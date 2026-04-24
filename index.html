@@ -52,22 +52,29 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  justify-content: flex-start;
   gap: 30px;
 }
 
-.topo img {
+/* CAPA */
+.topo img.capa {
   width: 100%;
   max-width: 350px;
   border-radius: 12px;
 }
 
-/* TEXTO */
+/* INFO */
 .info {
   max-width: 300px;
   text-align: left;
 }
 
+/* LOGO */
+.logo {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+/* TEXTO */
 .info h2 {
   margin: 0;
 }
@@ -126,7 +133,6 @@ body {
 .card p {
   margin-top: 8px;
   font-size: 14px;
-  text-align: left;
 }
 </style>
 </head>
@@ -146,15 +152,22 @@ body {
   <!-- 🔥 DESTAQUE -->
   <div class="topo">
 
-    <img src="capa1.jpg">
+    <!-- CAPA -->
+    <img src="capa1.jpg" class="capa">
 
+    <!-- INFO -->
     <div class="info">
+
+      <!-- LOGO DA GRAVADORA -->
+      <img src="logo.png" class="logo">
+
       <h2>🔥 Nome da Música</h2>
       <p>Seu último lançamento. Escute agora nas plataformas.</p>
 
       <a class="btn" href="musica1.html">
         Ouvir agora
       </a>
+
     </div>
 
   </div>
