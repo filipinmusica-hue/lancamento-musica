@@ -1,63 +1,81 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Minha Música</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Lançamento</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      background: #0f0f0f;
-      color: white;
-      text-align: center;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0f0f0f;
+  color: white;
+}
 
-    .container {
-      padding: 20px;
-    }
+/* MENU SUPERIOR */
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 15px;
+}
 
-    img {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 10px;
-    }
+.menu a {
+  color: white;
+  text-decoration: none;
+  background: #1db954;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
 
-    button {
-      background: #1db954;
-      border: none;
-      padding: 15px;
-      color: white;
-      font-size: 18px;
-      border-radius: 8px;
-      margin-top: 20px;
-      width: 100%;
-    }
-  </style>
+/* CONTEÚDO */
+.container {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 12px;
+}
+
+.destaques {
+  margin-top: 30px;
+}
+
+.destaques p {
+  background: #1a1a1a;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+</style>
 </head>
 
 <body>
 
+<!-- BOTÃO PRODUTOS -->
+<div class="menu">
+  <a href="produtos.html">🛒 Produtos</a>
+</div>
+
 <div class="container">
 
-  <h1>🔥 Minha Música</h1>
+  <h1>🔥 Nome da Música</h1>
 
   <img src="capa.jpg">
 
-  <audio controls>
-    <source src="musica.mp3" type="audio/mpeg">
-  </audio>
+  <h2>Destaques</h2>
 
-  <button onclick="comprar()">Comprar agora</button>
+  <div class="destaques">
+    <p>🎵 Lançamento anterior 1</p>
+    <p>🎵 Lançamento anterior 2</p>
+    <p>🎵 Lançamento anterior 3</p>
+  </div>
 
 </div>
-
-<script>
-  function comprar() {
-    window.location.href = "https://SEU-LINK-AQUI.com";
-  }
-</script>
 
 </body>
 </html>
