@@ -19,10 +19,13 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  display: flex;
-  justify-content: space-between;
   padding: 15px;
   background: rgba(0,0,0,0.7);
+}
+
+.menu-esquerda {
+  display: flex;
+  gap: 10px;
 }
 
 .menu a {
@@ -129,8 +132,10 @@ body {
 
 <!-- MENU -->
 <div class="menu">
-  <a href="#">🎵 Meu Site</a>
-  <a href="produtos.html">🛒 Produtos</a>
+  <div class="menu-esquerda">
+    <a href="index.html">🎵 Lançamentos</a>
+    <a href="produtos.html">🛒 Produtos</a>
+  </div>
 </div>
 
 <div class="container">
