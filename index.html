@@ -33,8 +33,10 @@ body {
   border-radius: 8px;
 }
 
-/* CONTAINER */
+/* CONTAINER CENTRAL (PROFISSIONAL) */
 .container {
+  max-width: 1000px;
+  margin: auto;
   padding: 90px 20px;
 }
 
@@ -42,21 +44,22 @@ body {
 .topo {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   gap: 30px;
 }
 
-/* IMAGEM PRINCIPAL */
+/* IMAGEM */
 .topo img {
   width: 100%;
   max-width: 350px;
   border-radius: 12px;
 }
 
-/* TEXTO AO LADO / ABAIXO */
+/* TEXTO */
 .info {
   max-width: 300px;
+  text-align: left;
 }
 
 .info h2 {
@@ -84,6 +87,11 @@ body {
   margin-top: 50px;
 }
 
+.lancamentos h2 {
+  text-align: left;
+}
+
+/* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -98,7 +106,6 @@ body {
   border-radius: 12px;
   cursor: pointer;
   transition: 0.3s;
-  text-align: center;
 }
 
 .card:hover {
@@ -113,6 +120,7 @@ body {
 .card p {
   margin-top: 8px;
   font-size: 14px;
+  text-align: left;
 }
 </style>
 </head>
@@ -127,13 +135,11 @@ body {
 
 <div class="container">
 
-  <!-- 🔥 BLOCO PRINCIPAL -->
+  <!-- 🔥 DESTAQUE -->
   <div class="topo">
 
-    <!-- IMAGEM -->
     <img src="capa1.jpg">
 
-    <!-- TEXTO AO LADO (ou embaixo no celular) -->
     <div class="info">
       <h2>🔥 Nome da Música</h2>
       <p>Seu último lançamento. Escute agora nas plataformas.</p>
