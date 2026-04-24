@@ -13,7 +13,7 @@ body {
   color: white;
 }
 
-/* MENU SUPERIOR */
+/* MENU */
 .menu {
   position: fixed;
   top: 0;
@@ -26,31 +26,49 @@ body {
 }
 
 .menu a {
-  color: white;
-  text-decoration: none;
   background: #1db954;
+  color: white;
   padding: 8px 12px;
+  text-decoration: none;
   border-radius: 8px;
 }
 
 /* CONTAINER */
 .container {
-  padding: 80px 20px;
-  text-align: center;
+  padding: 90px 20px;
 }
 
-/* DESTAQUE PRINCIPAL */
-.destaque img {
+/* BLOCO PRINCIPAL */
+.topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+/* IMAGEM PRINCIPAL */
+.topo img {
   width: 100%;
   max-width: 350px;
   border-radius: 12px;
 }
 
-.destaque h2 {
+/* TEXTO AO LADO / ABAIXO */
+.info {
+  max-width: 300px;
+}
+
+.info h2 {
+  margin: 0;
+}
+
+.info p {
+  color: #ccc;
   margin-top: 10px;
 }
 
-/* BOTÃO OUVIR */
+/* BOTÃO */
 .btn {
   display: inline-block;
   margin-top: 15px;
@@ -61,12 +79,16 @@ body {
   color: white;
 }
 
-/* GRID LANÇAMENTOS */
+/* LANÇAMENTOS */
 .lancamentos {
-  margin-top: 40px;
+  margin-top: 50px;
+}
+
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 15px;
+  gap: 20px;
+  margin-top: 20px;
 }
 
 /* CARD */
@@ -76,6 +98,7 @@ body {
   border-radius: 12px;
   cursor: pointer;
   transition: 0.3s;
+  text-align: center;
 }
 
 .card:hover {
@@ -104,36 +127,46 @@ body {
 
 <div class="container">
 
-  <!-- 🔥 DESTAQUE PRINCIPAL -->
-  <div class="destaque">
-    <img src="capa1.jpg">
-    <h2>🔥 Nome da Música Destaque</h2>
+  <!-- 🔥 BLOCO PRINCIPAL -->
+  <div class="topo">
 
-    <a class="btn" href="musica1.html">
-      Ouvir agora
-    </a>
+    <!-- IMAGEM -->
+    <img src="capa1.jpg">
+
+    <!-- TEXTO AO LADO (ou embaixo no celular) -->
+    <div class="info">
+      <h2>🔥 Nome da Música</h2>
+      <p>Seu último lançamento. Escute agora nas plataformas.</p>
+
+      <a class="btn" href="musica1.html">
+        Ouvir agora
+      </a>
+    </div>
+
   </div>
 
-  <!-- 🎵 OUTROS LANÇAMENTOS -->
-  <h2>Outros lançamentos</h2>
-
+  <!-- 🎵 LANÇAMENTOS -->
   <div class="lancamentos">
+    <h2>Outros lançamentos</h2>
 
-    <div class="card" onclick="abrir('musica2.html')">
-      <img src="capa2.jpg">
-      <p>Música 2</p>
+    <div class="grid">
+
+      <div class="card" onclick="abrir('musica2.html')">
+        <img src="capa2.jpg">
+        <p>Música 2</p>
+      </div>
+
+      <div class="card" onclick="abrir('musica3.html')">
+        <img src="capa3.jpg">
+        <p>Música 3</p>
+      </div>
+
+      <div class="card" onclick="abrir('musica4.html')">
+        <img src="capa4.jpg">
+        <p>Música 4</p>
+      </div>
+
     </div>
-
-    <div class="card" onclick="abrir('musica3.html')">
-      <img src="capa3.jpg">
-      <p>Música 3</p>
-    </div>
-
-    <div class="card" onclick="abrir('musica4.html')">
-      <img src="capa4.jpg">
-      <p>Música 4</p>
-    </div>
-
   </div>
 
 </div>
