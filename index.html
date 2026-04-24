@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Lançamento</title>
+<title>Lançamentos</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -13,7 +13,7 @@ body {
   color: white;
 }
 
-/* MENU SUPERIOR */
+/* MENU */
 .menu {
   position: fixed;
   top: 0;
@@ -22,34 +22,50 @@ body {
 }
 
 .menu a {
-  color: white;
-  text-decoration: none;
   background: #1db954;
+  color: white;
   padding: 10px 15px;
+  text-decoration: none;
   border-radius: 8px;
 }
 
-/* CONTEÚDO */
+/* CONTAINER */
 .container {
-  text-align: center;
   padding: 80px 20px;
+  text-align: center;
 }
 
-img {
-  width: 100%;
-  max-width: 300px;
-  border-radius: 12px;
-}
-
-.destaques {
+/* GRID DE LANÇAMENTOS */
+.lancamentos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
   margin-top: 30px;
 }
 
-.destaques p {
+/* CARD */
+.card {
   background: #1a1a1a;
   padding: 10px;
-  border-radius: 8px;
-  margin: 10px 0;
+  border-radius: 12px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* IMAGEM */
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* NOME */
+.card p {
+  margin-top: 10px;
+  font-weight: bold;
 }
 </style>
 </head>
@@ -63,19 +79,37 @@ img {
 
 <div class="container">
 
-  <h1>🔥 Nome da Música</h1>
+  <h1>🔥 Lançamentos</h1>
 
-  <img src="capa.jpg">
+  <div class="lancamentos">
 
-  <h2>Destaques</h2>
+    <!-- LANÇAMENTO 1 -->
+    <div class="card" onclick="abrir('musica1.html')">
+      <img src="capa1.jpg">
+      <p>Nome da Música 1</p>
+    </div>
 
-  <div class="destaques">
-    <p>🎵 Lançamento anterior 1</p>
-    <p>🎵 Lançamento anterior 2</p>
-    <p>🎵 Lançamento anterior 3</p>
+    <!-- LANÇAMENTO 2 -->
+    <div class="card" onclick="abrir('musica2.html')">
+      <img src="capa2.jpg">
+      <p>Nome da Música 2</p>
+    </div>
+
+    <!-- LANÇAMENTO 3 -->
+    <div class="card" onclick="abrir('musica3.html')">
+      <img src="capa3.jpg">
+      <p>Nome da Música 3</p>
+    </div>
+
   </div>
 
 </div>
+
+<script>
+function abrir(pagina){
+  window.location.href = pagina;
+}
+</script>
 
 </body>
 </html>
