@@ -21,6 +21,7 @@
 
 <script src="dados.js"></script>
 <script>
+
 const catalogo = document.getElementById("catalogo");
 
 projetos.forEach((p, index) => {
@@ -33,10 +34,11 @@ projetos.forEach((p, index) => {
   `;
 });
 
-function abrirProjeto(index) {
+function abrirProjeto(index){
   localStorage.setItem("projeto", index);
   window.location.href = "album.html";
 }
+
 </script>
 
 </body>
