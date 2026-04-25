@@ -49,6 +49,7 @@ body {
   position: relative;
   width: 100%;
   max-width: 600px;
+  margin: auto;
   border-radius: 12px;
   overflow: hidden;
 }
@@ -59,12 +60,10 @@ body {
   transition: 1s;
 }
 
+/* OVERLAY */
 .overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -72,17 +71,22 @@ body {
   background: rgba(0,0,0,0.4);
   color: white;
   text-align: center;
+  transition: 1s;
 }
 
-/* LOGO */
-.logo {
-  width: 120px;
-  margin-bottom: 10px;
+/* 🎵 NOME DA MÚSICA (FADE IN) */
+.titulo {
+  font-size: 28px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: aparecer 2s ease forwards;
 }
 
-/* CONTADOR */
+/* ⏱️ CONTADOR ANIMADO */
 #contador {
   font-size: 22px;
+  margin-top: 10px;
+  animation: pulse 1s infinite alternate;
 }
 
 /* BOTÃO */
@@ -118,6 +122,19 @@ body {
   width: 100%;
   border-radius: 10px;
 }
+
+/* ANIMAÇÕES */
+@keyframes aparecer {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
 </style>
 </head>
 
@@ -137,14 +154,19 @@ body {
   <div class="banner">
     <img src="capa1.jpg" id="bg">
 
-    <div class="overlay">
-      <img src="logo.png" class="logo">
+    <div class="overlay" id="overlay">
 
+      <!-- 🎵 NOME -->
+      <h2 class="titulo">Nome da Música</h2>
+
+      <!-- ⏱️ CONTADOR -->
       <p id="contador">Carregando...</p>
 
+      <!-- 🔘 BOTÃO -->
       <a id="botao" class="btn" href="#" target="_blank">
         🔔 Pré-save
       </a>
+
     </div>
   </div>
 
@@ -173,14 +195,15 @@ body {
 </div>
 
 <script>
-// 🔥 DATA DO LANÇAMENTO (MUDA AQUI)
+// DATA DO LANÇAMENTO
 const dataLancamento = new Date("2026-05-01T00:00:00").getTime();
 
 const contador = document.getElementById("contador");
 const bg = document.getElementById("bg");
 const botao = document.getElementById("botao");
+const overlay = document.getElementById("overlay");
 
-// 🔗 LINKS (MUDA AQUI)
+// LINKS
 const preSaveLink = "https://SEU-PRESAVE.com";
 const ouvirLink = "https://spotify.com";
 
@@ -196,6 +219,11 @@ const intervalo = setInterval(() => {
     contador.innerHTML = "🎵 Já disponível!";
     bg.style.filter = "blur(0px)";
 
+    // 🌫️ FADE OUT OVERLAY
+    overlay.style.background = "rgba(0,0,0,0)";
+    overlay.style.color = "#000";
+
+    // 🔄 BOTÃO
     botao.innerHTML = "▶ Ouça agora";
     botao.href = ouvirLink;
 
@@ -208,6 +236,7 @@ const intervalo = setInterval(() => {
 
   contador.innerHTML = `${dias}d ${horas}h ${minutos}m`;
 
+  // BLUR DIMINUINDO
   const diasAntes = 7 * 24 * 60 * 60 * 1000;
   const progresso = 1 - (diferenca / diasAntes);
   const blur = Math.max(0, 20 - progresso * 20);
