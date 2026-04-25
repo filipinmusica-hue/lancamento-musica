@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
+<title>Catálogo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="menu">
   <a href="index.html">Home</a>
+  <a href="catalogo.html">Músicas</a>
+  <a href="produtos.html">Produtos</a>
 </div>
 
 <div class="container">
@@ -17,12 +21,11 @@
 
 <script src="dados.js"></script>
 <script>
+const catalogo = document.getElementById("catalogo");
 
-const container = document.getElementById("catalogo");
-
-projetos.forEach((p,i) => {
-  container.innerHTML += `
-    <div class="card" onclick="abrirProjeto(${i})">
+projetos.forEach((p, index) => {
+  catalogo.innerHTML += `
+    <div class="card" onclick="abrirProjeto(${index})">
       <img src="${p.capa}">
       <p>${p.tipo.toUpperCase()}</p>
       <h3>${p.nome}</h3>
@@ -30,12 +33,11 @@ projetos.forEach((p,i) => {
   `;
 });
 
-function abrirProjeto(i){
-  localStorage.setItem("projeto", i);
+function abrirProjeto(index) {
+  localStorage.setItem("projeto", index);
   window.location.href = "album.html";
 }
-
 </script>
 
 </body>
-</html> 
+</html>
