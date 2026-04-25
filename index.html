@@ -9,8 +9,8 @@
 body {
   margin: 0;
   font-family: Arial;
-  background: #0f0f0f;
-  color: white;
+  background: #ffffff; /* fundo branco */
+  color: #111; /* texto escuro */
 }
 
 /* MENU */
@@ -20,7 +20,8 @@ body {
   left: 0;
   right: 0;
   padding: 15px;
-  background: rgba(0,0,0,0.7);
+  background: #ffffff;
+  border-bottom: 1px solid #ddd;
 }
 
 .menu-esquerda {
@@ -29,7 +30,7 @@ body {
 }
 
 .menu a {
-  background: #1db954;
+  background: #000000; /* botão preto */
   color: white;
   padding: 8px 12px;
   text-decoration: none;
@@ -37,7 +38,7 @@ body {
 }
 
 .menu a:hover {
-  background: #17a74a;
+  background: #333;
 }
 
 /* CONTAINER */
@@ -55,7 +56,6 @@ body {
   gap: 30px;
 }
 
-/* CAPA */
 .topo img.capa {
   width: 100%;
   max-width: 350px;
@@ -75,24 +75,23 @@ body {
 }
 
 /* TEXTO */
-.info h2 {
-  margin: 0;
-}
-
 .info p {
-  color: #ccc;
-  margin-top: 10px;
+  color: #555;
 }
 
-/* BOTÃO */
+/* BOTÃO PRINCIPAL */
 .btn {
   display: inline-block;
   margin-top: 15px;
   padding: 12px 20px;
-  background: #1db954;
+  background: #000000;
   border-radius: 10px;
   text-decoration: none;
   color: white;
+}
+
+.btn:hover {
+  background: #333;
 }
 
 /* LANÇAMENTOS */
@@ -114,7 +113,7 @@ body {
 
 /* CARD */
 .card {
-  background: #1a1a1a;
+  background: #f5f5f5;
   padding: 10px;
   border-radius: 12px;
   cursor: pointer;
@@ -149,16 +148,13 @@ body {
 
 <div class="container">
 
-  <!-- 🔥 DESTAQUE -->
+  <!-- DESTAQUE -->
   <div class="topo">
 
-    <!-- CAPA -->
     <img src="capa1.jpg" class="capa">
 
-    <!-- INFO -->
     <div class="info">
 
-      <!-- LOGO DA GRAVADORA -->
       <img src="logo.png" class="logo">
 
       <h2>🔥 Nome da Música</h2>
@@ -172,7 +168,7 @@ body {
 
   </div>
 
-  <!-- 🎵 LANÇAMENTOS -->
+  <!-- LANÇAMENTOS -->
   <div class="lancamentos">
     <h2>Outros lançamentos</h2>
 
