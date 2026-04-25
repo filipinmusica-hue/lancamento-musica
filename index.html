@@ -14,10 +14,10 @@
 
 <div class="container">
 
-<!-- 🔥 NOVO LANÇAMENTO -->
+<!-- LANÇAMENTO -->
 <div id="lancamento"></div>
 
-<!-- ⭐ DESTAQUES -->
+<!-- DESTAQUES -->
 <h2>🔥 Destaques</h2>
 <div class="grid" id="top"></div>
 
@@ -29,24 +29,54 @@
 const lancamentoDiv = document.getElementById("lancamento");
 const top = document.getElementById("top");
 
-// último projeto = lançamento
 const ultimo = projetos[projetos.length - 1];
 
-// ===== LANÇAMENTO =====
+// BANNER
 lancamentoDiv.innerHTML = `
   <div class="banner">
-    <img src="${ultimo.capa}">
+    <img id="bg" src="${ultimo.capa}">
     <div class="overlay">
       <h1>${ultimo.nome}</h1>
-      <p>${ultimo.tipo.toUpperCase()}</p>
-      <a href="#" onclick="abrirProjeto(${projetos.length - 1})" class="btn">
-        ▶ Ver lançamento
-      </a>
+      <p id="contador"></p>
+      <a id="botao" class="btn"></a>
     </div>
   </div>
 `;
 
-// ===== DESTAQUES =====
+// CONTADOR
+const contador = document.getElementById("contador");
+const botao = document.getElementById("botao");
+const bg = document.getElementById("bg");
+
+if (ultimo.data) {
+  const data = new Date(ultimo.data).getTime();
+
+  const intervalo = setInterval(() => {
+    const agora = new Date().getTime();
+    const dif = data - agora;
+
+    if (dif <= 0) {
+      contador.innerHTML = "🎵 Já disponível";
+      botao.innerText = "▶ Ouvir agora";
+      botao.href = ultimo.ouvir;
+      bg.style.filter = "blur(0)";
+      clearInterval(intervalo);
+      return;
+    }
+
+    const d = Math.floor(dif / (1000*60*60*24));
+    const h = Math.floor((dif / (1000*60*60)) % 24);
+    const m = Math.floor((dif / (1000*60)) % 60);
+
+    contador.innerHTML = `⏳ ${d}d ${h}h ${m}m`;
+
+    botao.innerText = "🔔 Pré-save";
+    botao.href = ultimo.preSave || "#";
+
+  }, 1000);
+}
+
+// DESTAQUES
 const recentes = [...projetos].reverse().slice(0,3);
 
 recentes.forEach((p,i) => {
