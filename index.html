@@ -1,37 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<div class="menu">
-  <a href="index.html">Home</a>
-  <a href="catalogo.html">Músicas</a>
-  <a href="produtos.html">Produtos</a>
-</div>
-
-<div class="container">
-
-<!-- LANÇAMENTO -->
-<div id="lancamento"></div>
-
-<!-- DESTAQUES -->
-<h2>🔥 Destaques</h2>
-<div class="grid" id="top"></div>
-
-</div>
-
 <script src="dados.js"></script>
 <script>
 
 const lancamentoDiv = document.getElementById("lancamento");
 const top = document.getElementById("top");
 
+if (!projetos || projetos.length === 0) {
+  console.error("Sem projetos");
+}
+
+// ===== PEGAR ÚLTIMO =====
 const ultimo = projetos[projetos.length - 1];
 
-// BANNER
+// ===== LANÇAMENTO =====
 lancamentoDiv.innerHTML = `
   <div class="banner">
     <img id="bg" src="${ultimo.capa}">
@@ -43,15 +23,17 @@ lancamentoDiv.innerHTML = `
   </div>
 `;
 
-// CONTADOR
 const contador = document.getElementById("contador");
 const botao = document.getElementById("botao");
 const bg = document.getElementById("bg");
 
+// ===== CONTADOR =====
 if (ultimo.data) {
+
   const data = new Date(ultimo.data).getTime();
 
   const intervalo = setInterval(() => {
+
     const agora = new Date().getTime();
     const dif = data - agora;
 
@@ -74,9 +56,16 @@ if (ultimo.data) {
     botao.href = ultimo.preSave || "#";
 
   }, 1000);
+
+} else {
+  contador.innerHTML = "";
+  botao.innerText = "▶ Ver projeto";
+  botao.onclick = () => abrirProjeto(projetos.length - 1);
 }
 
-// DESTAQUES
+// ===== DESTAQUES =====
+top.innerHTML = "";
+
 const recentes = [...projetos].reverse().slice(0,3);
 
 recentes.forEach((p,i) => {
@@ -89,12 +78,10 @@ recentes.forEach((p,i) => {
   `;
 });
 
+// ===== FUNÇÃO =====
 function abrirProjeto(i){
   localStorage.setItem("projeto", i);
   window.location.href = "album.html";
 }
 
 </script>
-
-</body>
-</html>
