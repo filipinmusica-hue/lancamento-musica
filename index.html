@@ -1,200 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Lançamento</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #fff;
-  color: #111;
-}
-
-/* MENU */
-.menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 15px;
-  background: #fff;
-  border-bottom: 1px solid #ddd;
-}
-
-.menu-esquerda {
-  display: flex;
-  gap: 10px;
-}
-
-.menu a {
-  background: #000;
-  color: white;
-  padding: 8px 12px;
-  text-decoration: none;
-  border-radius: 8px;
-}
-
-/* CONTAINER */
-.container {
-  max-width: 1000px;
-  margin: auto;
-  padding: 90px 20px;
-}
-
-/* BANNER */
-.banner {
-  position: relative;
-  max-width: 600px;
-  margin: auto;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-#bg {
-  width: 100%;
-  filter: blur(20px);
-  transition: 1s;
-}
-
-.overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0,0,0,0.4);
-  color: white;
-  text-align: center;
-  transition: 1s;
-}
-
-.titulo {
-  font-size: 28px;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: aparecer 2s forwards;
-}
-
-#contador {
-  font-size: 22px;
-  margin-top: 10px;
-  animation: pulse 1s infinite alternate;
-}
-
-.btn {
-  margin-top: 15px;
-  padding: 12px 20px;
-  background: #000;
-  color: white;
-  text-decoration: none;
-  border-radius: 10px;
-}
-
-/* animações */
-@keyframes aparecer {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes pulse {
-  from { opacity: 0.6; }
-  to { opacity: 1; }
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <div class="menu">
-  <div class="menu-esquerda">
-    <a href="index.html">🎵 Lançamentos</a>
-    <a href="produtos.html">🛒 Produtos</a>
-  </div>
+  <a href="index.html">Home</a>
+  <a href="catalogo.html">Músicas</a>
+  <a href="produtos.html">Produtos</a>
 </div>
 
 <div class="container">
 
-  <div class="banner">
-    <img id="bg">
-
-    <div class="overlay" id="overlay">
-      <h2 class="titulo" id="titulo"></h2>
-      <p id="contador"></p>
-
-      <a id="botao" class="btn" target="_blank">
-        🔔 Pré-save
-      </a>
-    </div>
+<div class="banner">
+  <img id="bg">
+  <div class="overlay">
+    <h2 id="titulo"></h2>
+    <p id="contador"></p>
+    <a id="botao">Pré-save</a>
   </div>
+</div>
 
 </div>
 
-<script>
-
-//////////////////////////////////////////////////
-// 🔥 CONFIGURAÇÃO (VOCÊ SÓ MUDA ISSO)
-//////////////////////////////////////////////////
-
-const musica = {
-  nome: "Nome da Música",
-  capa: "capa1.jpg",
-  data: "2026-05-01T00:00:00",
-  preSave: "https://SEU-PRESAVE.com",
-  ouvir: "https://spotify.com"
-};
-
-//////////////////////////////////////////////////
-
-const titulo = document.getElementById("titulo");
-const contador = document.getElementById("contador");
-const bg = document.getElementById("bg");
-const botao = document.getElementById("botao");
-const overlay = document.getElementById("overlay");
-
-// aplica config
-titulo.innerText = musica.nome;
-bg.src = musica.capa;
-botao.href = musica.preSave;
-
-const dataLancamento = new Date(musica.data).getTime();
-
-const intervalo = setInterval(() => {
-  const agora = new Date().getTime();
-  const diferenca = dataLancamento - agora;
-
-  if (diferenca <= 0) {
-    clearInterval(intervalo);
-
-    contador.innerHTML = "🎵 Já disponível!";
-    bg.style.filter = "blur(0px)";
-
-    overlay.style.background = "rgba(0,0,0,0)";
-    overlay.style.color = "#000";
-
-    botao.innerHTML = "▶ Ouça agora";
-    botao.href = musica.ouvir;
-
-    return;
-  }
-
-  const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
-  const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
-  const minutos = Math.floor((diferenca / (1000 * 60)) % 60);
-
-  contador.innerHTML = `${dias}d ${horas}h ${minutos}m`;
-
-  const diasAntes = 7 * 24 * 60 * 60 * 1000;
-  const progresso = 1 - (diferenca / diasAntes);
-  const blur = Math.max(0, 20 - progresso * 20);
-
-  bg.style.filter = `blur(${blur}px)`;
-
-}, 1000);
-
-</script>
+<script src="dados.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
