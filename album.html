@@ -1,43 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
+<title>Projeto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="menu">
-  <a href="catalogo.html">← Voltar</a>
+  <a href="index.html">Home</a>
+  <a href="catalogo.html">Músicas</a>
+  <a href="produtos.html">Produtos</a>
 </div>
 
 <div class="container" id="pagina"></div>
 
 <script src="dados.js"></script>
 <script>
+const index = localStorage.getItem("projeto") || 0;
+const projeto = projetos[index];
 
-const i = localStorage.getItem("projeto");
-const p = projetos[i];
-
-const pagina = document.getElementById("pagina");
-
-pagina.innerHTML = `
+document.getElementById("pagina").innerHTML = `
   <div class="album-header">
-    <img src="${p.capa}">
-    <h1>${p.nome}</h1>
-    <a href="${p.ouvir}" target="_blank" class="btn">▶ Ouvir agora</a>
+    <img src="${projeto.capa}">
+    <h1>${projeto.nome}</h1>
+    <p>${projeto.tipo.toUpperCase()}</p>
+    <a href="${projeto.ouvir}" target="_blank" class="btn">▶ Ouvir agora</a>
   </div>
 
   <h2>🎵 Músicas</h2>
-  <div class="grid">
-    ${p.musicas.map(m => `
-      <div class="card">
-        <p>${m.nome}</p>
+
+  <div class="lista-musicas">
+    ${projeto.musicas.map(m => `
+      <div class="musica-item">
+        <span>${m.nome}</span>
       </div>
     `).join("")}
   </div>
 `;
-
 </script>
 
 </body>
-</html> 
+</html>
