@@ -4,22 +4,8 @@
 <meta charset="UTF-8">
 <title>Filipe Música</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-body{margin:0;font-family:Arial;background:white;color:#111}
-.menu{padding:15px;display:flex;gap:10px;border-bottom:1px solid #ddd}
-.menu a{background:#000;color:white;padding:8px 12px;text-decoration:none;border-radius:8px}
-.container{max-width:1000px;margin:auto;padding:20px}
-.banner{position:relative;margin-bottom:30px}
-.banner img{width:100%;border-radius:12px;filter:blur(20px);transition:1s}
-.overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;background:rgba(0,0,0,.4);color:white;border-radius:12px;text-align:center}
-.btn{margin-top:10px;padding:10px 20px;background:black;color:white;text-decoration:none;border-radius:8px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px}
-.card{text-align:center;cursor:pointer}
-.card img{width:100%;border-radius:10px}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <div class="menu">
@@ -35,40 +21,8 @@ body{margin:0;font-family:Arial;background:white;color:#111}
   <div class="grid" id="top"></div>
 </div>
 
+<script src="dados.js"></script>
 <script>
-const projetos = [
-  {
-    nome: "Álbum 1",
-    tipo: "album",
-    capa: "capa1.jpg",
-    ouvir: "#",
-    musicas: [
-      { nome: "Faixa 1" },
-      { nome: "Faixa 2" }
-    ]
-  },
-  {
-    nome: "EP 1",
-    tipo: "ep",
-    capa: "capa2.jpg",
-    ouvir: "#",
-    musicas: [
-      { nome: "Faixa 1" }
-    ]
-  },
-  {
-    nome: "Novo Lançamento",
-    tipo: "single",
-    capa: "capa3.jpg",
-    data: "2026-05-10T00:00:00",
-    preSave: "#",
-    ouvir: "#",
-    musicas: [
-      { nome: "Nova Música" }
-    ]
-  }
-];
-
 const ultimo = projetos[projetos.length - 1];
 
 document.getElementById("lancamento").innerHTML = `
@@ -86,41 +40,50 @@ const contador = document.getElementById("contador");
 const botao = document.getElementById("botao");
 const bg = document.getElementById("bg");
 
-const data = new Date(ultimo.data).getTime();
+if (ultimo.data) {
+  const data = new Date(ultimo.data).getTime();
 
-setInterval(() => {
-  const agora = new Date().getTime();
-  const dif = data - agora;
+  setInterval(() => {
+    const agora = new Date().getTime();
+    const dif = data - agora;
 
-  if (dif <= 0) {
-    contador.innerHTML = "🎵 Já disponível";
-    botao.innerText = "▶ Ouvir agora";
-    botao.href = ultimo.ouvir;
-    bg.style.filter = "blur(0)";
-    return;
-  }
+    if (dif <= 0) {
+      contador.innerHTML = "🎵 Já disponível";
+      botao.innerText = "▶ Ouvir agora";
+      botao.href = ultimo.ouvir;
+      bg.style.filter = "blur(0)";
+      return;
+    }
 
-  const d = Math.floor(dif / (1000*60*60*24));
-  const h = Math.floor((dif / (1000*60*60)) % 24);
-  const m = Math.floor((dif / (1000*60)) % 60);
+    const d = Math.floor(dif / (1000 * 60 * 60 * 24));
+    const h = Math.floor((dif / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((dif / (1000 * 60)) % 60);
 
-  contador.innerHTML = `⏳ ${d}d ${h}h ${m}m`;
-  botao.innerText = "🔔 Pré-save";
-  botao.href = ultimo.preSave;
-}, 1000);
+    contador.innerHTML = `⏳ ${d}d ${h}h ${m}m`;
+    botao.innerText = "🔔 Pré-save";
+    botao.href = ultimo.preSave;
+  }, 1000);
+}
 
 const top = document.getElementById("top");
-const recentes = [...projetos].reverse().slice(0,3);
+const recentes = [...projetos].reverse().slice(0, 3);
 
-recentes.forEach((p) => {
+recentes.forEach((p, index) => {
+  const realIndex = projetos.length - 1 - index;
+
   top.innerHTML += `
-    <div class="card">
+    <div class="card" onclick="abrirProjeto(${realIndex})">
       <img src="${p.capa}">
       <p>${p.tipo.toUpperCase()}</p>
       <h3>${p.nome}</h3>
     </div>
   `;
 });
+
+function abrirProjeto(index) {
+  localStorage.setItem("projeto", index);
+  window.location.href = "album.html";
+}
 </script>
 
 </body>
