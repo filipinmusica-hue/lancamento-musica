@@ -1,7 +1,8 @@
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   background: #fff;
+  color: #111;
 }
 
 .menu {
@@ -9,6 +10,7 @@ body {
   display: flex;
   gap: 10px;
   border-bottom: 1px solid #ddd;
+  flex-wrap: wrap;
 }
 
 .menu a {
@@ -25,23 +27,6 @@ body {
   padding: 20px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
-  gap: 20px;
-}
-
-.card {
-  cursor: pointer;
-  text-align: center;
-}
-
-.card img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-/* BANNER */
 .banner {
   position: relative;
   margin-bottom: 30px;
@@ -51,6 +36,7 @@ body {
   width: 100%;
   border-radius: 12px;
   filter: blur(20px);
+  transition: 1s;
 }
 
 .overlay {
@@ -63,15 +49,60 @@ body {
   background: rgba(0,0,0,0.4);
   color: white;
   border-radius: 12px;
+  text-align: center;
+}
+
+.overlay h1 {
+  font-size: clamp(24px, 6vw, 48px);
+  margin: 0;
+}
+
+#contador {
+  font-size: clamp(18px, 5vw, 32px);
 }
 
 .btn {
   margin-top: 10px;
-  padding: 10px 20px;
-  background: black;
-  color: white;
+  padding: 12px 22px;
+  background: #000;
+  color: #fff;
   text-decoration: none;
-  border-radius: 8px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  cursor: pointer;
+  text-align: center;
+  background: #f5f5f5;
+  padding: 12px;
+  border-radius: 12px;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.card p {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: #555;
+}
+
+.card h3 {
+  margin: 6px 0 0;
 }
 
 .album-header {
@@ -79,6 +110,38 @@ body {
 }
 
 .album-header img {
-  width: 200px;
+  width: 220px;
+  max-width: 100%;
   border-radius: 12px;
+}
+
+.lista-musicas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.musica-item {
+  background: #f5f5f5;
+  padding: 14px;
+  border-radius: 10px;
+}
+
+.em-breve {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 15px;
+  }
+
+  .menu a {
+    font-size: 14px;
+  }
 }
