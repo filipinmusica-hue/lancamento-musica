@@ -2,8 +2,8 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Filipe Música</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,85 +16,88 @@
 
 <div class="container">
 
-  <!-- BANNER -->
   <div class="banner">
-    <img id="bg">
+    <img id="bg" src="" alt="Capa do novo lançamento">
     <div class="overlay">
-      <h1 id="titulo"></h1>
+      <h1 id="titulo">Carregando...</h1>
       <p id="contador"></p>
-      <a id="botao" class="btn">Pré-save</a>
+      <a id="botao" class="btn" href="#">Pré-save</a>
     </div>
   </div>
 
-  <!-- DESTAQUES -->
   <h2>🔥 Destaques</h2>
   <div class="grid" id="top"></div>
 
 </div>
 
 <script src="dados.js"></script>
-
 <script>
-
-// TESTE
-if (!window.projetos) {
-  alert("ERRO: dados.js não carregou");
+if (!window.projetos || window.projetos.length === 0) {
+  document.body.innerHTML = "<h1>Erro: dados.js não carregou corretamente.</h1>";
 }
 
-// PEGAR LANÇAMENTO
-const lancamento = window.projetos[window.projetos.length - 1];
+const projetos = window.projetos;
+const lancamento = projetos[projetos.length - 1];
 
-// ELEMENTOS
 const bg = document.getElementById("bg");
 const titulo = document.getElementById("titulo");
 const contador = document.getElementById("contador");
 const botao = document.getElementById("botao");
 const top = document.getElementById("top");
 
-// SETAR
 bg.src = lancamento.capa;
 titulo.innerText = lancamento.nome;
+botao.href = lancamento.preSave || "#";
 
-// CONTADOR
-function atualizar() {
-
-  const agora = new Date().getTime();
-  const data = new Date(lancamento.data).getTime();
-  const dif = data - agora;
-
-  if (dif <= 0) {
-    contador.innerText = "🎵 Já disponível";
-    botao.innerText = "▶ Ouvir agora";
-    botao.href = lancamento.ouvir;
-    bg.style.filter = "blur(0)";
+function atualizarContador() {
+  if (!lancamento.data) {
+    contador.innerText = "Data não definida";
     return;
   }
 
-  const d = Math.floor(dif / (1000*60*60*24));
-  const h = Math.floor((dif / (1000*60*60)) % 24);
-  const m = Math.floor((dif / (1000*60)) % 60);
+  const agora = new Date().getTime();
+  const dataLancamento = new Date(lancamento.data).getTime();
+  const diferenca = dataLancamento - agora;
 
-  contador.innerText = `${d}d ${h}h ${m}m`;
+  if (diferenca <= 0) {
+    contador.innerText = "🎵 Já disponível";
+    botao.innerText = "▶ Ouvir agora";
+    botao.href = lancamento.ouvir || "#";
+    bg.style.filter = "blur(0px)";
+    return;
+  }
+
+  const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+  const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
+  const minutos = Math.floor((diferenca / (1000 * 60)) % 60);
+
+  contador.innerText = `⏳ ${dias}d ${horas}h ${minutos}m`;
   botao.innerText = "🔔 Pré-save";
-  botao.href = lancamento.preSave;
+  botao.href = lancamento.preSave || "#";
+  bg.style.filter = "blur(20px)";
 }
 
-setInterval(atualizar, 1000);
-atualizar();
+atualizarContador();
+setInterval(atualizarContador, 1000);
 
-// DESTAQUES
-const lista = window.projetos.slice(0, -1).reverse();
+const destaques = projetos.slice(0, -1).reverse().slice(0, 3);
 
-lista.forEach((p) => {
+destaques.forEach((p, index) => {
+  const realIndex = projetos.length - 2 - index;
+
   top.innerHTML += `
-    <div class="card">
-      <img src="${p.capa}">
-      <p>${p.tipo}</p>
+    <div class="card" onclick="abrirProjeto(${realIndex})">
+      <img src="${p.capa}" alt="${p.nome}">
+      <p>${p.tipo.toUpperCase()}</p>
       <h3>${p.nome}</h3>
     </div>
   `;
 });
 
+function abrirProjeto(index) {
+  localStorage.setItem("projeto", index);
+  window.location.href = "album.html";
+}
 </script>
 
 </body>
