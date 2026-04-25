@@ -33,7 +33,7 @@
 <script src="dados.js"></script>
 <script>
 
-// 🔥 VERIFICA SE CARREGOU
+// TESTE
 if (typeof projetos === "undefined") {
   document.body.innerHTML = "ERRO: dados.js não carregou";
 }
@@ -46,23 +46,40 @@ const bg = document.getElementById("bg");
 const titulo = document.getElementById("titulo");
 const contador = document.getElementById("contador");
 const botao = document.getElementById("botao");
-const top = document.getElementById("top");
 
-// SETAR DADOS
+// SETAR
 bg.src = lancamento.capa;
 titulo.innerText = lancamento.nome;
 
 // CONTADOR
 function atualizar() {
 
-  if (!lancamento.data) {
-    contador.innerText = "Sem data";
-    return;
-  }
-
   const agora = new Date().getTime();
   const data = new Date(lancamento.data).getTime();
   const dif = data - agora;
 
   if (dif <= 0) {
-    contador.inner
+    contador.innerText = "🎵 Já disponível";
+    botao.innerText = "▶ Ouvir agora";
+    botao.href = lancamento.ouvir;
+    bg.style.filter = "blur(0)";
+    return;
+  }
+
+  const d = Math.floor(dif / (1000*60*60*24));
+  const h = Math.floor((dif / (1000*60*60)) % 24);
+  const m = Math.floor((dif / (1000*60)) % 60);
+
+  contador.innerText = `${d}d ${h}h ${m}m`;
+  botao.innerText = "🔔 Pré-save";
+  botao.href = lancamento.preSave;
+
+}
+
+setInterval(atualizar, 1000);
+atualizar();
+
+</script>
+
+</body>
+</html>
