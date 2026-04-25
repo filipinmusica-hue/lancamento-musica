@@ -31,12 +31,10 @@
 </div>
 
 <script src="dados.js"></script>
-<script>
-if (!window.projetos || window.projetos.length === 0) {
-  document.body.innerHTML = "<h1>Erro: dados.js não carregou corretamente.</h1>";
-}
 
+<script>
 const projetos = window.projetos;
+
 const lancamento = projetos[projetos.length - 1];
 
 const bg = document.getElementById("bg");
@@ -47,52 +45,43 @@ const top = document.getElementById("top");
 
 bg.src = lancamento.capa;
 titulo.innerText = lancamento.nome;
-botao.href = lancamento.preSave || "#";
 
-function atualizarContador() {
-  if (!lancamento.data) {
-    contador.innerText = "Data não definida";
-    return;
-  }
-
+function atualizar() {
   const agora = new Date().getTime();
-  const dataLancamento = new Date(lancamento.data).getTime();
-  const diferenca = dataLancamento - agora;
+  const data = new Date(lancamento.data).getTime();
+  const diff = data - agora;
 
-  if (diferenca <= 0) {
+  if (diff <= 0) {
     contador.innerText = "🎵 Já disponível";
     botao.innerText = "▶ Ouvir agora";
-    botao.href = lancamento.ouvir || "#";
+    botao.href = lancamento.ouvir;
     bg.style.filter = "blur(0px)";
     return;
   }
 
-  const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
-  const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
-  const minutos = Math.floor((diferenca / (1000 * 60)) % 60);
+  const d = Math.floor(diff / (1000*60*60*24));
+  const h = Math.floor((diff / (1000*60*60)) % 24);
+  const m = Math.floor((diff / (1000*60)) % 60);
 
-  contador.innerText = `⏳ ${dias}d ${horas}h ${minutos}m`;
+  contador.innerText = `⏳ ${d}d ${h}h ${m}m`;
   botao.innerText = "🔔 Pré-save";
-  botao.href = lancamento.preSave || "#";
-  bg.style.filter = "blur(20px)";
+  botao.href = lancamento.preSave;
 }
 
-atualizarContador();
-setInterval(atualizarContador, 1000);
+setInterval(atualizar, 1000);
 
 const destaques = projetos.slice(0, -1).reverse().slice(0, 3);
 
-destaques.forEach((p, index) => {
-  const realIndex = projetos.length - 2 - index;
-
+destaques.forEach((p, i) => {
   top.innerHTML += `
-    <div class="card" onclick="abrirProjeto(${realIndex})">
-      <img src="${p.capa}" alt="${p.nome}">
+    <div class="card">
+      <img src="${p.capa}">
       <p>${p.tipo.toUpperCase()}</p>
       <h3>${p.nome}</h3>
     </div>
   `;
 });
+</script>
 
 function abrirProjeto(index) {
   localStorage.setItem("projeto", index);
