@@ -14,22 +14,35 @@
 
 <div class="container">
 
-<div class="banner">
-  <img id="bg">
-  <div class="overlay">
-    <h2 id="titulo" class="titulo"></h2>
-    <p id="contador"></p>
-    <a id="botao" class="btn">Pré-save</a>
-  </div>
-</div>
+<h1>🎵 Lançamentos</h1>
 
-<h2>🔥 Mais ouvidas</h2>
+<h2>🔥 Destaques</h2>
 <div class="grid" id="top"></div>
 
 </div>
 
 <script src="dados.js"></script>
-<script src="script.js"></script>
+<script>
+const top = document.getElementById("top");
+
+// mostra últimos projetos
+const recentes = [...projetos].reverse().slice(0,3);
+
+recentes.forEach((p,i) => {
+  top.innerHTML += `
+    <div class="card" onclick="abrirProjeto(${projetos.length - 1 - i})">
+      <img src="${p.capa}">
+      <p>${p.tipo.toUpperCase()}</p>
+      <h3>${p.nome}</h3>
+    </div>
+  `;
+});
+
+function abrirProjeto(i){
+  localStorage.setItem("projeto", i);
+  window.location.href = "album.html";
+}
+</script>
 
 </body>
 </html>
