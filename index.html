@@ -37,6 +37,12 @@
 <script src="dados.js"></script>
 
 <script>
+if (!window.projetos) {
+  document.getElementById("titulo").innerText = "Erro: dados.js não carregou";
+  document.getElementById("contador").innerText = "Verifique o nome do arquivo";
+  throw new Error("dados.js não carregou");
+}
+
 const projetos = window.projetos;
 const lancamento = projetos[projetos.length - 1];
 
