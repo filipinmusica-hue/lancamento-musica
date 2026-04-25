@@ -33,6 +33,30 @@
 <script src="dados.js"></script>
 
 <script>
+const top = document.getElementById("top");
+
+// filtra os destaques
+const destaques = window.projetos.filter(p =>
+  p.nome === "Atriz de cinema" ||
+  p.nome === "Noites sem dormir" ||
+  p.nome === "Sem medo"
+);
+
+// monta na tela (CORRIGIDO)
+destaques.forEach((p) => {
+  const indexReal = window.projetos.indexOf(p);
+
+  top.innerHTML += `
+    <div class="card" onclick="abrirProjeto(${indexReal})">
+      <img src="${p.capa}">
+      <p>${p.tipo}</p>
+      <h3>${p.nome}</h3>
+    </div>
+  `;
+});
+</script>
+
+<script>
 window.onload = function () {
   const projetos = window.projetos;
 
