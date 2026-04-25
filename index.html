@@ -44,7 +44,7 @@ body {
   padding: 90px 20px;
 }
 
-/* BANNER LANÇAMENTO */
+/* BANNER */
 .banner {
   position: relative;
   width: 100%;
@@ -83,7 +83,16 @@ body {
 /* CONTADOR */
 #contador {
   font-size: 22px;
-  margin-top: 10px;
+}
+
+/* BOTÃO */
+.btn {
+  margin-top: 15px;
+  padding: 12px 20px;
+  background: #000;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
 }
 
 /* LANÇAMENTOS */
@@ -91,11 +100,6 @@ body {
   margin-top: 50px;
 }
 
-.lancamentos h2 {
-  text-align: left;
-}
-
-/* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -103,26 +107,16 @@ body {
   margin-top: 20px;
 }
 
-/* CARD */
 .card {
   background: #f5f5f5;
   padding: 10px;
   border-radius: 12px;
   cursor: pointer;
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: scale(1.05);
 }
 
 .card img {
   width: 100%;
   border-radius: 10px;
-}
-
-.card p {
-  margin-top: 8px;
 }
 </style>
 </head>
@@ -139,16 +133,18 @@ body {
 
 <div class="container">
 
-  <!-- 🔥 BANNER COM CONTAGEM -->
+  <!-- 🔥 BANNER -->
   <div class="banner">
     <img src="capa1.jpg" id="bg">
 
     <div class="overlay">
       <img src="logo.png" class="logo">
 
-      <h2>🔥 Nova Música</h2>
-
       <p id="contador">Carregando...</p>
+
+      <a id="botao" class="btn" href="#" target="_blank">
+        🔔 Pré-save
+      </a>
     </div>
   </div>
 
@@ -157,7 +153,6 @@ body {
     <h2>Outros lançamentos</h2>
 
     <div class="grid">
-
       <div class="card" onclick="abrir('musica2.html')">
         <img src="capa2.jpg">
         <p>Música 2</p>
@@ -172,18 +167,24 @@ body {
         <img src="capa4.jpg">
         <p>Música 4</p>
       </div>
-
     </div>
   </div>
 
 </div>
 
 <script>
-// 🔥 DATA DO LANÇAMENTO (ALTERA AQUI)
+// 🔥 DATA DO LANÇAMENTO (MUDA AQUI)
 const dataLancamento = new Date("2026-05-01T00:00:00").getTime();
 
 const contador = document.getElementById("contador");
 const bg = document.getElementById("bg");
+const botao = document.getElementById("botao");
+
+// 🔗 LINKS (MUDA AQUI)
+const preSaveLink = "https://SEU-PRESAVE.com";
+const ouvirLink = "https://spotify.com";
+
+botao.href = preSaveLink;
 
 const intervalo = setInterval(() => {
   const agora = new Date().getTime();
@@ -191,8 +192,13 @@ const intervalo = setInterval(() => {
 
   if (diferenca <= 0) {
     clearInterval(intervalo);
+
     contador.innerHTML = "🎵 Já disponível!";
     bg.style.filter = "blur(0px)";
+
+    botao.innerHTML = "▶ Ouça agora";
+    botao.href = ouvirLink;
+
     return;
   }
 
@@ -202,7 +208,6 @@ const intervalo = setInterval(() => {
 
   contador.innerHTML = `${dias}d ${horas}h ${minutos}m`;
 
-  // efeito blur diminuindo (7 dias antes)
   const diasAntes = 7 * 24 * 60 * 60 * 1000;
   const progresso = 1 - (diferenca / diasAntes);
   const blur = Math.max(0, 20 - progresso * 20);
