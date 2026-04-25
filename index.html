@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Home</title>
-<link rel="stylesheet" href="style.css">
+<title>Filipe Música</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{margin:0;font-family:Arial;background:white;color:#111}
+.menu{padding:15px;display:flex;gap:10px;border-bottom:1px solid #ddd}
+.menu a{background:#000;color:white;padding:8px 12px;text-decoration:none;border-radius:8px}
+.container{max-width:1000px;margin:auto;padding:20px}
+.banner{position:relative;margin-bottom:30px}
+.banner img{width:100%;border-radius:12px;filter:blur(20px);transition:1s}
+.overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;background:rgba(0,0,0,.4);color:white;border-radius:12px;text-align:center}
+.btn{margin-top:10px;padding:10px 20px;background:black;color:white;text-decoration:none;border-radius:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px}
+.card{text-align:center;cursor:pointer}
+.card img{width:100%;border-radius:10px}
+</style>
 </head>
+
 <body>
 
 <div class="menu">
@@ -14,92 +29,98 @@
 </div>
 
 <div class="container">
-
-  <!-- LANÇAMENTO -->
   <div id="lancamento"></div>
 
-  <!-- DESTAQUES -->
   <h2>🔥 Destaques</h2>
   <div class="grid" id="top"></div>
-
 </div>
 
-<!-- IMPORTANTE: dados.js vem antes -->
-<script src="dados.js"></script>
-
 <script>
-console.log("SCRIPT RODANDO");
+const projetos = [
+  {
+    nome: "Álbum 1",
+    tipo: "album",
+    capa: "capa1.jpg",
+    ouvir: "#",
+    musicas: [
+      { nome: "Faixa 1" },
+      { nome: "Faixa 2" }
+    ]
+  },
+  {
+    nome: "EP 1",
+    tipo: "ep",
+    capa: "capa2.jpg",
+    ouvir: "#",
+    musicas: [
+      { nome: "Faixa 1" }
+    ]
+  },
+  {
+    nome: "Novo Lançamento",
+    tipo: "single",
+    capa: "capa3.jpg",
+    data: "2026-05-10T00:00:00",
+    preSave: "#",
+    ouvir: "#",
+    musicas: [
+      { nome: "Nova Música" }
+    ]
+  }
+];
 
-// 🔥 TESTE: se isso aparecer, tá funcionando
-if (!projetos) {
-  document.body.innerHTML = "ERRO: projetos não carregou";
-}
-
-// ===== PEGAR ÚLTIMO =====
 const ultimo = projetos[projetos.length - 1];
 
-const lancamento = document.getElementById("lancamento");
-
-// ===== CRIAR LANÇAMENTO =====
-lancamento.innerHTML = `
-  <div style="background:#000;color:#fff;padding:20px;border-radius:10px;margin-bottom:20px;">
-    <h1>${ultimo.nome}</h1>
-    <p id="contador">Carregando...</p>
-    <a id="botao" style="background:white;color:black;padding:10px 15px;border-radius:8px;text-decoration:none;">...</a>
+document.getElementById("lancamento").innerHTML = `
+  <div class="banner">
+    <img id="bg" src="${ultimo.capa}">
+    <div class="overlay">
+      <h1>${ultimo.nome}</h1>
+      <p id="contador">Carregando...</p>
+      <a id="botao" class="btn" href="#">Pré-save</a>
+    </div>
   </div>
 `;
 
 const contador = document.getElementById("contador");
 const botao = document.getElementById("botao");
+const bg = document.getElementById("bg");
 
-// ===== CONTADOR =====
-if (ultimo.data) {
+const data = new Date(ultimo.data).getTime();
 
-  const data = new Date(ultimo.data).getTime();
+setInterval(() => {
+  const agora = new Date().getTime();
+  const dif = data - agora;
 
-  setInterval(() => {
-    const agora = new Date().getTime();
-    const dif = data - agora;
+  if (dif <= 0) {
+    contador.innerHTML = "🎵 Já disponível";
+    botao.innerText = "▶ Ouvir agora";
+    botao.href = ultimo.ouvir;
+    bg.style.filter = "blur(0)";
+    return;
+  }
 
-    if (dif <= 0) {
-      contador.innerHTML = "🎵 Já disponível";
-      botao.innerText = "▶ Ouvir agora";
-      botao.href = ultimo.ouvir;
-      return;
-    }
+  const d = Math.floor(dif / (1000*60*60*24));
+  const h = Math.floor((dif / (1000*60*60)) % 24);
+  const m = Math.floor((dif / (1000*60)) % 60);
 
-    const d = Math.floor(dif / (1000*60*60*24));
-    const h = Math.floor((dif / (1000*60*60)) % 24);
-    const m = Math.floor((dif / (1000*60)) % 60);
+  contador.innerHTML = `⏳ ${d}d ${h}h ${m}m`;
+  botao.innerText = "🔔 Pré-save";
+  botao.href = ultimo.preSave;
+}, 1000);
 
-    contador.innerHTML = `⏳ ${d}d ${h}h ${m}m`;
-
-    botao.innerText = "🔔 Pré-save";
-    botao.href = ultimo.preSave || "#";
-
-  }, 1000);
-
-} else {
-  contador.innerHTML = "Sem data definida";
-}
-
-// ===== DESTAQUES =====
 const top = document.getElementById("top");
-
-top.innerHTML = "";
-
 const recentes = [...projetos].reverse().slice(0,3);
 
-recentes.forEach((p,i) => {
+recentes.forEach((p) => {
   top.innerHTML += `
     <div class="card">
       <img src="${p.capa}">
-      <p>${p.tipo}</p>
+      <p>${p.tipo.toUpperCase()}</p>
       <h3>${p.nome}</h3>
     </div>
   `;
 });
-
 </script>
 
 </body>
