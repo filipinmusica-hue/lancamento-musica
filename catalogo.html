@@ -21,24 +21,22 @@
 
 <script src="dados.js"></script>
 <script>
-
 const catalogo = document.getElementById("catalogo");
 
-projetos.forEach((p, index) => {
+window.projetos.forEach((p, index) => {
   catalogo.innerHTML += `
     <div class="card" onclick="abrirProjeto(${index})">
-      <img src="${p.capa}">
+      <img src="${p.capa}" alt="${p.nome}">
       <p>${p.tipo.toUpperCase()}</p>
       <h3>${p.nome}</h3>
     </div>
   `;
 });
 
-function abrirProjeto(index){
+function abrirProjeto(index) {
   localStorage.setItem("projeto", index);
   window.location.href = "album.html";
 }
-
 </script>
 
 </body>
