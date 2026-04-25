@@ -25,4 +25,4 @@ const musicas = [
     plays: 300,
     ouvir: "https://spotify.com"
   }
-];
+];  
