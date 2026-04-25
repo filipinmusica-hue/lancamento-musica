@@ -1,4 +1,4 @@
-window.projetos = [
+const projetos = [
   {
     nome: "Álbum 1",
     tipo: "album",
