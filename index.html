@@ -2,8 +2,8 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Filipe Música</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Filipe Música</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
 
 <div class="container">
 
-  <!-- 🔥 LANÇAMENTO -->
+  <!-- BANNER -->
   <div class="banner">
     <img id="bg">
     <div class="overlay">
@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <!-- 🔥 DESTAQUES -->
+  <!-- DESTAQUES -->
   <h2>🔥 Destaques</h2>
   <div class="grid" id="top"></div>
 
@@ -36,12 +36,12 @@
 
 <script>
 
-// 🔴 TESTE
+// TESTE
 if (!window.projetos) {
-  document.body.innerHTML = "ERRO: dados.js não carregou";
+  alert("ERRO: dados.js não carregou");
 }
 
-// 🔥 LANÇAMENTO
+// PEGAR LANÇAMENTO
 const lancamento = window.projetos[window.projetos.length - 1];
 
 // ELEMENTOS
@@ -55,13 +55,8 @@ const top = document.getElementById("top");
 bg.src = lancamento.capa;
 titulo.innerText = lancamento.nome;
 
-// ⏳ CONTADOR
+// CONTADOR
 function atualizar() {
-
-  if (!lancamento.data) {
-    contador.innerText = "Sem data";
-    return;
-  }
 
   const agora = new Date().getTime();
   const data = new Date(lancamento.data).getTime();
@@ -79,23 +74,22 @@ function atualizar() {
   const h = Math.floor((dif / (1000*60*60)) % 24);
   const m = Math.floor((dif / (1000*60)) % 60);
 
-  contador.innerText = `⏳ ${d}d ${h}h ${m}m`;
+  contador.innerText = `${d}d ${h}h ${m}m`;
   botao.innerText = "🔔 Pré-save";
-  botao.href = lancamento.preSave || "#";
+  botao.href = lancamento.preSave;
 }
 
 setInterval(atualizar, 1000);
 atualizar();
 
+// DESTAQUES
+const lista = window.projetos.slice(0, -1).reverse();
 
-// 🔥 DESTAQUES
-const destaques = window.projetos.slice(0, -1).reverse().slice(0, 3);
-
-destaques.forEach((p) => {
+lista.forEach((p) => {
   top.innerHTML += `
     <div class="card">
       <img src="${p.capa}">
-      <p>${p.tipo.toUpperCase()}</p>
+      <p>${p.tipo}</p>
       <h3>${p.nome}</h3>
     </div>
   `;
