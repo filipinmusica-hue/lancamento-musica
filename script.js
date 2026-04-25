@@ -1,15 +1,15 @@
-// ordenar por mais ouvidas
+// ordenar ranking
 musicas.sort((a,b) => b.plays - a.plays);
 
-// 🔥 LANÇAMENTO ATUAL
-const atual = musicas[0];
-
+// ===== HOME =====
 const bg = document.getElementById("bg");
 const titulo = document.getElementById("titulo");
 const contador = document.getElementById("contador");
 const botao = document.getElementById("botao");
 
 if(bg){
+  const atual = musicas[0];
+
   bg.src = atual.capa;
   titulo.innerText = atual.nome;
   botao.href = atual.preSave || atual.ouvir;
@@ -37,7 +37,7 @@ if(bg){
   }
 }
 
-// 🔥 TOP 3 HOME
+// ===== TOP 3 =====
 const top = document.getElementById("top");
 
 if(top){
@@ -51,10 +51,12 @@ if(top){
   });
 }
 
-// 📀 CATÁLOGO
+// ===== CATÁLOGO =====
 const grid = document.getElementById("grid");
 
 if(grid){
+  grid.innerHTML = "";
+
   musicas.forEach((m,i) => {
     grid.innerHTML += `
       <div class="card">
@@ -66,4 +68,3 @@ if(grid){
     `;
   });
 }
-
