@@ -1,19 +1,20 @@
-if (typeof musicas !== "undefined") {
+// só roda se existir dados
+if (typeof musicas !== "undefined" && Array.isArray(musicas)) {
 
   const agora = new Date().getTime();
 
-  // ===== SEPARAR MÚSICAS =====
   let lancamento = null;
   let liberadas = [];
 
+  // separar músicas
   musicas.forEach(m => {
     if (m.data) {
       const data = new Date(m.data).getTime();
 
-      if (data > agora) {
-        lancamento = m; // futura
+      if (!isNaN(data) && data > agora) {
+        lancamento = m;
       } else {
-        liberadas.push(m); // já lançou
+        liberadas.push(m);
       }
     } else {
       liberadas.push(m);
@@ -23,48 +24,55 @@ if (typeof musicas !== "undefined") {
   // ordenar liberadas
   liberadas.sort((a,b) => (b.plays || 0) - (a.plays || 0));
 
-  // ===== HOME (BANNER) =====
+  // ===== HOME =====
   const bg = document.getElementById("bg");
   const titulo = document.getElementById("titulo");
   const contador = document.getElementById("contador");
   const botao = document.getElementById("botao");
 
-  if (bg && titulo && contador && botao && lancamento) {
+  if (bg && titulo && contador && botao) {
 
-    bg.src = lancamento.capa;
-    titulo.innerText = lancamento.nome;
-    botao.href = lancamento.preSave || "#";
+    const atual = lancamento || liberadas[0];
 
-    const data = new Date(lancamento.data).getTime();
+    if (atual) {
+      bg.src = atual.capa || "";
+      titulo.innerText = atual.nome || "";
+      botao.href = atual.preSave || atual.ouvir || "#";
+    }
 
-    const intervalo = setInterval(() => {
-      const agora2 = new Date().getTime();
-      const dif = data - agora2;
+    // só roda contador se for lançamento futuro
+    if (lancamento && lancamento.data) {
+      const data = new Date(lancamento.data).getTime();
 
-      if (dif <= 0) {
-        contador.innerHTML = "🎵 Já disponível";
-        bg.style.filter = "blur(0)";
-        botao.innerText = "▶ Ouvir agora";
-        botao.href = lancamento.ouvir || "#";
-        clearInterval(intervalo);
+      const intervalo = setInterval(() => {
+        const agora2 = new Date().getTime();
+        const dif = data - agora2;
 
-        // 🔥 entra nas liberadas automaticamente
-        liberadas.unshift(lancamento);
-        atualizarTop();
-        atualizarCatalogo();
-        return;
-      }
+        if (dif <= 0) {
+          contador.innerHTML = "🎵 Já disponível";
+          bg.style.filter = "blur(0)";
+          botao.innerText = "▶ Ouvir agora";
+          botao.href = lancamento.ouvir || "#";
+          clearInterval(intervalo);
 
-      const d = Math.floor(dif / (1000*60*60*24));
-      const h = Math.floor((dif / (1000*60*60)) % 24);
-      const m = Math.floor((dif / (1000*60)) % 60);
+          liberadas.unshift(lancamento);
+          atualizarTop();
+          atualizarCatalogo();
+          return;
+        }
 
-      contador.innerHTML = `${d}d ${h}h ${m}m`;
-    }, 1000);
+        const d = Math.floor(dif / (1000*60*60*24));
+        const h = Math.floor((dif / (1000*60*60)) % 24);
+        const m = Math.floor((dif / (1000*60)) % 60);
+
+        contador.innerHTML = `${d}d ${h}h ${m}m`;
+      }, 1000);
+    } else {
+      contador.innerHTML = "";
+    }
   }
 
-  // ===== FUNÇÕES =====
-
+  // ===== TOP =====
   function atualizarTop(){
     const top = document.getElementById("top");
     if (!top) return;
@@ -72,4 +80,36 @@ if (typeof musicas !== "undefined") {
     top.innerHTML = "";
 
     liberadas.slice(0,3).forEach(m => {
-      top.innerHTML +=
+      top.innerHTML += `
+        <div class="card">
+          <img src="${m.capa || ""}">
+          <p>${m.nome || ""}</p>
+        </div>
+      `;
+    });
+  }
+
+  // ===== CATÁLOGO =====
+  function atualizarCatalogo(){
+    const grid = document.getElementById("grid");
+    if (!grid) return;
+
+    grid.innerHTML = "";
+
+    liberadas.forEach((m,i) => {
+      grid.innerHTML += `
+        <div class="card">
+          <h3>#${i+1}</h3>
+          <img src="${m.capa || ""}">
+          <p>${m.nome || ""}</p>
+          <small>${m.plays || 0} plays</small>
+        </div>
+      `;
+    });
+  }
+
+  // iniciar
+  atualizarTop();
+  atualizarCatalogo();
+
+}
