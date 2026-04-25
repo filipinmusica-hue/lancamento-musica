@@ -16,7 +16,15 @@
 
 <div class="container">
 
-  <div id="lancamento"></div>
+  <section class="banner">
+    <img id="bg" src="" alt="Capa do lançamento">
+
+    <div class="overlay">
+      <h1 id="titulo">Carregando...</h1>
+      <p id="contador"></p>
+      <a id="botao" class="btn" href="#">Pré-save</a>
+    </div>
+  </section>
 
   <h2>🔥 Destaques</h2>
   <div class="grid" id="top"></div>
@@ -25,54 +33,42 @@
 
 <script src="dados.js"></script>
 <script>
+const lancamento = projetos[projetos.length - 1];
 
-// PEGAR ÚLTIMO (lançamento)
-const ultimo = projetos[projetos.length - 1];
-
-// CRIAR BANNER
-document.getElementById("lancamento").innerHTML = `
-  <div class="banner">
-    <img id="bg" src="${ultimo.capa}">
-    <div class="overlay">
-      <h1>${ultimo.nome}</h1>
-      <p id="contador">Carregando...</p>
-      <a id="botao" class="btn" href="#">Pré-save</a>
-    </div>
-  </div>
-`;
-
+const bg = document.getElementById("bg");
+const titulo = document.getElementById("titulo");
 const contador = document.getElementById("contador");
 const botao = document.getElementById("botao");
-const bg = document.getElementById("bg");
+const top = document.getElementById("top");
 
-// CONTADOR
-if (ultimo.data) {
-  const data = new Date(ultimo.data).getTime();
+bg.src = lancamento.capa;
+titulo.innerText = lancamento.nome;
+botao.href = lancamento.preSave || "#";
 
-  setInterval(() => {
-    const agora = new Date().getTime();
-    const dif = data - agora;
+function atualizarContador() {
+  const dataLancamento = new Date(lancamento.data).getTime();
+  const agora = new Date().getTime();
+  const diferenca = dataLancamento - agora;
 
-    if (dif <= 0) {
-      contador.innerHTML = "🎵 Já disponível";
-      botao.innerText = "▶ Ouvir agora";
-      botao.href = ultimo.ouvir;
-      bg.style.filter = "blur(0)";
-      return;
-    }
+  if (diferenca <= 0) {
+    contador.innerHTML = "🎵 Já disponível";
+    botao.innerText = "▶ Ouvir agora";
+    botao.href = lancamento.ouvir || "#";
+    bg.style.filter = "blur(0px)";
+    return;
+  }
 
-    const d = Math.floor(dif / (1000*60*60*24));
-    const h = Math.floor((dif / (1000*60*60)) % 24);
-    const m = Math.floor((dif / (1000*60)) % 60);
+  const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+  const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
+  const minutos = Math.floor((diferenca / (1000 * 60)) % 60);
 
-    contador.innerHTML = `⏳ ${d}d ${h}h ${m}m`;
-    botao.innerText = "🔔 Pré-save";
-    botao.href = ultimo.preSave;
-  }, 1000);
+  contador.innerHTML = `⏳ ${dias}d ${horas}h ${minutos}m`;
+  botao.innerText = "🔔 Pré-save";
+  bg.style.filter = "blur(20px)";
 }
 
-// DESTAQUES (SEM o lançamento)
-const top = document.getElementById("top");
+atualizarContador();
+setInterval(atualizarContador, 1000);
 
 const destaques = projetos.slice(0, -1).reverse().slice(0, 3);
 
@@ -88,11 +84,10 @@ destaques.forEach((p, index) => {
   `;
 });
 
-function abrirProjeto(index){
+function abrirProjeto(index) {
   localStorage.setItem("projeto", index);
   window.location.href = "album.html";
 }
-
 </script>
 
 </body>
