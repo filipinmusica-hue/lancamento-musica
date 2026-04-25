@@ -12,11 +12,28 @@
 
 <div class="container">
   <h1>🎧 Catálogo</h1>
-  <div class="grid" id="grid"></div>
+  <div class="grid" id="catalogo"></div>
 </div>
 
 <script src="dados.js"></script>
-<script src="script.js"></script>
+<script>
+const container = document.getElementById("catalogo");
+
+projetos.forEach((p,i) => {
+  container.innerHTML += `
+    <div class="card" onclick="abrirProjeto(${i})">
+      <img src="${p.capa}">
+      <p>${p.tipo.toUpperCase()}</p>
+      <h3>${p.nome}</h3>
+    </div>
+  `;
+});
+
+function abrirProjeto(i){
+  localStorage.setItem("projeto", i);
+  window.location.href = "album.html";
+}
+</script>
 
 </body>
 </html>
