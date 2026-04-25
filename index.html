@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <div class="menu">
@@ -17,88 +16,80 @@
 
 <div class="container">
 
-  <!-- BANNER -->
   <div class="banner">
     <img id="bg" src="">
     <div class="overlay">
       <h1 id="titulo">Carregando...</h1>
       <p id="contador"></p>
-      <a id="botao" class="btn">Pré-save</a>
+      <a id="botao" class="btn" href="#">Pré-save</a>
     </div>
   </div>
 
-  <!-- DESTAQUES -->
   <h2>🔥 Destaques</h2>
   <div class="grid" id="top"></div>
 
 </div>
 
-<!-- IMPORTANTE: dados.js primeiro -->
 <script src="dados.js"></script>
 
 <script>
-if (!window.projetos) {
-  document.getElementById("titulo").innerText = "Erro: dados.js não carregou";
-  document.getElementById("contador").innerText = "Verifique o nome do arquivo";
-  throw new Error("dados.js não carregou");
-}
+window.onload = function () {
+  const projetos = window.projetos;
 
-const projetos = window.projetos;
-const lancamento = projetos[projetos.length - 1];
+  const titulo = document.getElementById("titulo");
+  const contador = document.getElementById("contador");
+  const bg = document.getElementById("bg");
+  const botao = document.getElementById("botao");
+  const top = document.getElementById("top");
 
-const bg = document.getElementById("bg");
-const titulo = document.getElementById("titulo");
-const contador = document.getElementById("contador");
-const botao = document.getElementById("botao");
-const top = document.getElementById("top");
-
-// BANNER
-bg.src = lancamento.capa;
-titulo.innerText = lancamento.nome;
-
-function atualizar() {
-  const agora = new Date().getTime();
-  const data = new Date(lancamento.data).getTime();
-  const diff = data - agora;
-
-  if (diff <= 0) {
-    contador.innerText = "🎵 Já disponível";
-    botao.innerText = "▶ Ouvir agora";
-    botao.href = lancamento.ouvir;
-    bg.style.filter = "blur(0px)";
+  if (!projetos || projetos.length === 0) {
+    titulo.innerText = "Erro nos dados";
+    contador.innerText = "O dados.js não carregou corretamente";
     return;
   }
 
-  const d = Math.floor(diff / (1000*60*60*24));
-  const h = Math.floor((diff / (1000*60*60)) % 24);
-  const m = Math.floor((diff / (1000*60)) % 60);
+  const lancamento = projetos[projetos.length - 1];
 
-  contador.innerText = `⏳ ${d}d ${h}h ${m}m`;
-  botao.innerText = "🔔 Pré-save";
-  botao.href = lancamento.preSave;
-}
+  titulo.innerText = lancamento.nome;
+  bg.src = lancamento.capa;
+  botao.href = lancamento.preSave || "#";
 
-setInterval(atualizar, 1000);
-atualizar();
+  function atualizarContador() {
+    const agora = new Date().getTime();
+    const data = new Date(lancamento.data).getTime();
+    const diferenca = data - agora;
 
-// DESTAQUES (sem o lançamento)
-const destaques = projetos.slice(0, -1).reverse().slice(0, 3);
+    if (diferenca <= 0) {
+      contador.innerText = "🎵 Já disponível";
+      botao.innerText = "▶ Ouvir agora";
+      botao.href = lancamento.ouvir || "#";
+      bg.style.filter = "blur(0px)";
+      return;
+    }
 
-destaques.forEach((p, i) => {
-  top.innerHTML += `
-    <div class="card" onclick="abrirProjeto(${i})">
-      <img src="${p.capa}">
-      <p>${p.tipo.toUpperCase()}</p>
-      <h3>${p.nome}</h3>
-    </div>
-  `;
-});
+    const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
+    const minutos = Math.floor((diferenca / (1000 * 60)) % 60);
 
-// ABRIR PROJETO
-function abrirProjeto(index) {
-  localStorage.setItem("projeto", index);
-  window.location.href = "album.html";
-}
+    contador.innerText = `⏳ ${dias}d ${horas}h ${minutos}m`;
+    botao.innerText = "🔔 Pré-save";
+  }
+
+  atualizarContador();
+  setInterval(atualizarContador, 1000);
+
+  const destaques = projetos.slice(0, -1).reverse().slice(0, 3);
+
+  destaques.forEach((p, index) => {
+    top.innerHTML += `
+      <div class="card">
+        <img src="${p.capa}">
+        <p>${p.tipo.toUpperCase()}</p>
+        <h3>${p.nome}</h3>
+      </div>
+    `;
+  });
+};
 </script>
 
 </body>
