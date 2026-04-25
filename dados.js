@@ -1,32 +1,40 @@
 window.projetos = [
   {
-    nome: "Álbum 1",
-    tipo: "album",
+    nome: "Noites sem dormir",
+    tipo: "SINGLE",
     capa: "capa1.jpg",
-    ouvir: "#",
+    ouvir: "LINK_DO_YOUTUBE_AQUI",
     musicas: [
-      { nome: "Faixa 1" },
-      { nome: "Faixa 2" }
+      { nome: "Noites sem dormir" }
     ]
   },
   {
-    nome: "EP 1",
-    tipo: "ep",
+    nome: "Atriz de cinema",
+    tipo: "SINGLE",
     capa: "capa2.jpg",
-    ouvir: "#",
+    ouvir: "LINK_DO_YOUTUBE_AQUI",
     musicas: [
-      { nome: "Faixa 1" }
+      { nome: "Atriz de cinema" }
+    ]
+  },
+  {
+    nome: "Sem medo",
+    tipo: "SINGLE",
+    capa: "capa3.jpg",
+    ouvir: "LINK_DO_YOUTUBE_AQUI",
+    musicas: [
+      { nome: "Sem medo" }
     ]
   },
   {
     nome: "Novo Lançamento",
-    tipo: "single",
-    capa: "capa3.jpg",
+    tipo: "SINGLE",
+    capa: "capa4.jpg",
     data: "2026-05-10T00:00:00",
-    preSave: "#",
-    ouvir: "#",
+    preSave: "LINK_DO_PRESAVE_AQUI",
+    ouvir: "LINK_DO_YOUTUBE_AQUI",
     musicas: [
-      { nome: "Nova Música" }
+      { nome: "Novo Lançamento" }
     ]
   }
 ];
