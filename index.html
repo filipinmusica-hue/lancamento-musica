@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Home</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,40 +15,44 @@
 
 <div class="container">
 
-<div id="lancamento"></div>
+  <!-- LANÇAMENTO -->
+  <div id="lancamento"></div>
 
-<h2>🔥 Destaques</h2>
-<div class="grid" id="top"></div>
+  <!-- DESTAQUES -->
+  <h2>🔥 Destaques</h2>
+  <div class="grid" id="top"></div>
 
 </div>
 
+<!-- IMPORTANTE: dados.js vem antes -->
 <script src="dados.js"></script>
-<script>
 
-if (typeof projetos === "undefined") {
-  document.body.innerHTML = "<h1>Erro no dados.js</h1>";
+<script>
+console.log("SCRIPT RODANDO");
+
+// 🔥 TESTE: se isso aparecer, tá funcionando
+if (!projetos) {
+  document.body.innerHTML = "ERRO: projetos não carregou";
 }
 
-// PEGAR ÚLTIMO
+// ===== PEGAR ÚLTIMO =====
 const ultimo = projetos[projetos.length - 1];
 
-// LANÇAMENTO
-document.getElementById("lancamento").innerHTML = `
-  <div class="banner">
-    <img id="bg" src="${ultimo.capa}">
-    <div class="overlay">
-      <h1>${ultimo.nome}</h1>
-      <p id="contador"></p>
-      <a id="botao" class="btn"></a>
-    </div>
+const lancamento = document.getElementById("lancamento");
+
+// ===== CRIAR LANÇAMENTO =====
+lancamento.innerHTML = `
+  <div style="background:#000;color:#fff;padding:20px;border-radius:10px;margin-bottom:20px;">
+    <h1>${ultimo.nome}</h1>
+    <p id="contador">Carregando...</p>
+    <a id="botao" style="background:white;color:black;padding:10px 15px;border-radius:8px;text-decoration:none;">...</a>
   </div>
 `;
 
 const contador = document.getElementById("contador");
 const botao = document.getElementById("botao");
-const bg = document.getElementById("bg");
 
-// CONTADOR
+// ===== CONTADOR =====
 if (ultimo.data) {
 
   const data = new Date(ultimo.data).getTime();
@@ -60,7 +65,6 @@ if (ultimo.data) {
       contador.innerHTML = "🎵 Já disponível";
       botao.innerText = "▶ Ouvir agora";
       botao.href = ultimo.ouvir;
-      bg.style.filter = "blur(0)";
       return;
     }
 
@@ -75,28 +79,26 @@ if (ultimo.data) {
 
   }, 1000);
 
+} else {
+  contador.innerHTML = "Sem data definida";
 }
 
-// DESTAQUES
+// ===== DESTAQUES =====
 const top = document.getElementById("top");
+
 top.innerHTML = "";
 
 const recentes = [...projetos].reverse().slice(0,3);
 
 recentes.forEach((p,i) => {
   top.innerHTML += `
-    <div class="card" onclick="abrirProjeto(${projetos.length - 1 - i})">
+    <div class="card">
       <img src="${p.capa}">
-      <p>${p.tipo.toUpperCase()}</p>
+      <p>${p.tipo}</p>
       <h3>${p.nome}</h3>
     </div>
   `;
 });
-
-function abrirProjeto(i){
-  localStorage.setItem("projeto", i);
-  window.location.href = "album.html";
-}
 
 </script>
 
