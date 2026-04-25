@@ -1,6 +1,6 @@
 const musicas = [
   {
-    nome: "Minha Música 1",
+    nome: "baby",
     capa: "capa1.jpg",
     data: "2026-05-01T00:00:00",
     preSave: "https://link-presave.com",
