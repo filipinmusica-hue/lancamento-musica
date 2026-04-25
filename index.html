@@ -8,7 +8,6 @@
 </head>
 <body>
 
-<!-- MENU -->
 <div class="menu">
   <a href="index.html">Home</a>
   <a href="catalogo.html">Músicas</a>
@@ -33,18 +32,17 @@
 
 </div>
 
-<!-- DADOS -->
 <script src="dados.js"></script>
 
 <script>
 
-// 🔴 TESTE DE ERRO
-if (typeof projetos === "undefined") {
+// 🔴 TESTE
+if (!window.projetos) {
   document.body.innerHTML = "ERRO: dados.js não carregou";
 }
 
-// 🔥 PEGAR LANÇAMENTO
-const lancamento = projetos[projetos.length - 1];
+// 🔥 LANÇAMENTO
+const lancamento = window.projetos[window.projetos.length - 1];
 
 // ELEMENTOS
 const bg = document.getElementById("bg");
@@ -53,7 +51,7 @@ const contador = document.getElementById("contador");
 const botao = document.getElementById("botao");
 const top = document.getElementById("top");
 
-// SETAR DADOS
+// SETAR
 bg.src = lancamento.capa;
 titulo.innerText = lancamento.nome;
 
@@ -90,8 +88,8 @@ setInterval(atualizar, 1000);
 atualizar();
 
 
-// 🔥 DESTAQUES (SEM O LANÇAMENTO)
-const destaques = projetos.slice(0, -1).reverse().slice(0, 3);
+// 🔥 DESTAQUES
+const destaques = window.projetos.slice(0, -1).reverse().slice(0, 3);
 
 destaques.forEach((p) => {
   top.innerHTML += `
