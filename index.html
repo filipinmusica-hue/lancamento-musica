@@ -1,18 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="menu">
+  <a href="index.html">Home</a>
+  <a href="catalogo.html">Músicas</a>
+  <a href="produtos.html">Produtos</a>
+</div>
+
+<div class="container">
+
+<div id="lancamento"></div>
+
+<h2>🔥 Destaques</h2>
+<div class="grid" id="top"></div>
+
+</div>
+
 <script src="dados.js"></script>
 <script>
 
-const lancamentoDiv = document.getElementById("lancamento");
-const top = document.getElementById("top");
-
-if (!projetos || projetos.length === 0) {
-  console.error("Sem projetos");
+if (typeof projetos === "undefined") {
+  document.body.innerHTML = "<h1>Erro no dados.js</h1>";
 }
 
-// ===== PEGAR ÚLTIMO =====
+// PEGAR ÚLTIMO
 const ultimo = projetos[projetos.length - 1];
 
-// ===== LANÇAMENTO =====
-lancamentoDiv.innerHTML = `
+// LANÇAMENTO
+document.getElementById("lancamento").innerHTML = `
   <div class="banner">
     <img id="bg" src="${ultimo.capa}">
     <div class="overlay">
@@ -27,13 +47,12 @@ const contador = document.getElementById("contador");
 const botao = document.getElementById("botao");
 const bg = document.getElementById("bg");
 
-// ===== CONTADOR =====
+// CONTADOR
 if (ultimo.data) {
 
   const data = new Date(ultimo.data).getTime();
 
-  const intervalo = setInterval(() => {
-
+  setInterval(() => {
     const agora = new Date().getTime();
     const dif = data - agora;
 
@@ -42,7 +61,6 @@ if (ultimo.data) {
       botao.innerText = "▶ Ouvir agora";
       botao.href = ultimo.ouvir;
       bg.style.filter = "blur(0)";
-      clearInterval(intervalo);
       return;
     }
 
@@ -57,13 +75,10 @@ if (ultimo.data) {
 
   }, 1000);
 
-} else {
-  contador.innerHTML = "";
-  botao.innerText = "▶ Ver projeto";
-  botao.onclick = () => abrirProjeto(projetos.length - 1);
 }
 
-// ===== DESTAQUES =====
+// DESTAQUES
+const top = document.getElementById("top");
 top.innerHTML = "";
 
 const recentes = [...projetos].reverse().slice(0,3);
@@ -78,10 +93,12 @@ recentes.forEach((p,i) => {
   `;
 });
 
-// ===== FUNÇÃO =====
 function abrirProjeto(i){
   localStorage.setItem("projeto", i);
   window.location.href = "album.html";
 }
 
 </script>
+
+</body>
+</html>
