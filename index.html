@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="menu">
@@ -16,25 +17,27 @@
 
 <div class="container">
 
+  <!-- BANNER -->
   <div class="banner">
-    <img id="bg" src="" alt="Capa do novo lançamento">
+    <img id="bg" src="">
     <div class="overlay">
       <h1 id="titulo">Carregando...</h1>
       <p id="contador"></p>
-      <a id="botao" class="btn" href="#">Pré-save</a>
+      <a id="botao" class="btn">Pré-save</a>
     </div>
   </div>
 
+  <!-- DESTAQUES -->
   <h2>🔥 Destaques</h2>
   <div class="grid" id="top"></div>
 
 </div>
 
+<!-- IMPORTANTE: dados.js primeiro -->
 <script src="dados.js"></script>
 
 <script>
 const projetos = window.projetos;
-
 const lancamento = projetos[projetos.length - 1];
 
 const bg = document.getElementById("bg");
@@ -43,6 +46,7 @@ const contador = document.getElementById("contador");
 const botao = document.getElementById("botao");
 const top = document.getElementById("top");
 
+// BANNER
 bg.src = lancamento.capa;
 titulo.innerText = lancamento.nome;
 
@@ -69,18 +73,26 @@ function atualizar() {
 }
 
 setInterval(atualizar, 1000);
+atualizar();
 
+// DESTAQUES (sem o lançamento)
 const destaques = projetos.slice(0, -1).reverse().slice(0, 3);
 
 destaques.forEach((p, i) => {
   top.innerHTML += `
-    <div class="card">
+    <div class="card" onclick="abrirProjeto(${i})">
       <img src="${p.capa}">
       <p>${p.tipo.toUpperCase()}</p>
       <h3>${p.nome}</h3>
     </div>
   `;
 });
+
+// ABRIR PROJETO
+function abrirProjeto(index) {
+  localStorage.setItem("projeto", index);
+  window.location.href = "album.html";
+}
 </script>
 
 </body>
