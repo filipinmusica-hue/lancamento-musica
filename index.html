@@ -14,8 +14,10 @@
 
 <div class="container">
 
-<h1>🎵 Lançamentos</h1>
+<!-- 🔥 NOVO LANÇAMENTO -->
+<div id="lancamento"></div>
 
+<!-- ⭐ DESTAQUES -->
 <h2>🔥 Destaques</h2>
 <div class="grid" id="top"></div>
 
@@ -23,9 +25,28 @@
 
 <script src="dados.js"></script>
 <script>
+
+const lancamentoDiv = document.getElementById("lancamento");
 const top = document.getElementById("top");
 
-// mostra últimos projetos
+// último projeto = lançamento
+const ultimo = projetos[projetos.length - 1];
+
+// ===== LANÇAMENTO =====
+lancamentoDiv.innerHTML = `
+  <div class="banner">
+    <img src="${ultimo.capa}">
+    <div class="overlay">
+      <h1>${ultimo.nome}</h1>
+      <p>${ultimo.tipo.toUpperCase()}</p>
+      <a href="#" onclick="abrirProjeto(${projetos.length - 1})" class="btn">
+        ▶ Ver lançamento
+      </a>
+    </div>
+  </div>
+`;
+
+// ===== DESTAQUES =====
 const recentes = [...projetos].reverse().slice(0,3);
 
 recentes.forEach((p,i) => {
@@ -42,6 +63,7 @@ function abrirProjeto(i){
   localStorage.setItem("projeto", i);
   window.location.href = "album.html";
 }
+
 </script>
 
 </body>
