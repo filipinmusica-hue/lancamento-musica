@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="menu">
+  <a href="catalogo.html">← Voltar</a>
+</div>
+
+<div class="container" id="pagina"></div>
+
+<script src="dados.js"></script>
+<script>
+const i = localStorage.getItem("projeto");
+const p = projetos[i];
+
+const pagina = document.getElementById("pagina");
+
+pagina.innerHTML = `
+  <div class="album-header">
+    <img src="${p.capa}">
+    <h1>${p.nome}</h1>
+    <a href="${p.ouvir}" target="_blank" class="btn">▶ Ouvir agora</a>
+  </div>
+
+  <h2>🎵 Músicas</h2>
+  <div class="grid">
+    ${p.musicas.map(m => `
+      <div class="card">
+        <p>${m.nome}</p>
+      </div>
+    `).join("")}
+  </div>
+`;
+</script>
+
+</body>
+</html>
