@@ -2,7 +2,7 @@ window.projetos = [
   {
     nome: "Álbum 1",
     tipo: "album",
-    capa: "./capa1.jpg",
+    capa: "capa1.jpg",
     ouvir: "#",
     musicas: [
       { nome: "Faixa 1" },
@@ -12,7 +12,7 @@ window.projetos = [
   {
     nome: "EP 1",
     tipo: "ep",
-    capa: "./capa2.jpg",
+    capa: "capa2.jpg",
     ouvir: "#",
     musicas: [
       { nome: "Faixa 1" }
@@ -21,7 +21,7 @@ window.projetos = [
   {
     nome: "Novo Lançamento",
     tipo: "single",
-    capa: "./capa3.jpg",
+    capa: "capa3.jpg",
     data: "2026-05-10T00:00:00",
     preSave: "#",
     ouvir: "#",
