@@ -1,33 +1,32 @@
 const projetos = [
   {
-    nome: "Primeiro Álbum",
+    nome: "Álbum 1",
     tipo: "album",
-    capa: "album1.jpg",
-    ouvir: "https://youtube.com",
+    capa: "capa1.jpg",
+    ouvir: "#",
     musicas: [
-      { nome: "Música 1" },
-      { nome: "Música 2" }
+      { nome: "Faixa 1" },
+      { nome: "Faixa 2" }
     ]
   },
 
   {
-    nome: "EP Noturno",
+    nome: "EP 1",
     tipo: "ep",
-    capa: "ep1.jpg",
-    ouvir: "https://youtube.com",
+    capa: "capa2.jpg",
+    ouvir: "#",
     musicas: [
-      { nome: "Música 3" },
-      { nome: "Música 4" }
+      { nome: "Faixa 1" }
     ]
   },
 
   {
     nome: "Novo Lançamento",
     tipo: "single",
-    capa: "lancamento.jpg",
-    data: "2026-05-10T00:00:00", // DATA DO LANÇAMENTO
-    preSave: "https://youtube.com",
-    ouvir: "https://youtube.com",
+    capa: "capa3.jpg",
+    data: "2026-05-10T00:00:00",
+    preSave: "#",
+    ouvir: "#",
     musicas: [
       { nome: "Nova Música" }
     ]
