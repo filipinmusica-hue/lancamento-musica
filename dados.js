@@ -9,7 +9,6 @@ const projetos = [
       { nome: "Faixa 2" }
     ]
   },
-
   {
     nome: "EP 1",
     tipo: "ep",
@@ -19,7 +18,6 @@ const projetos = [
       { nome: "Faixa 1" }
     ]
   },
-
   {
     nome: "Novo Lançamento",
     tipo: "single",
