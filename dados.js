@@ -1,28 +1,32 @@
-const musicas = [
+const projetos = [
   {
-    nome: "Nova Música",
-    capa: "capa1.jpg",
-    data: "2026-05-01T00:00:00",
-    plays: 1500,
-    preSave: "https://SEU-PRESAVE.com",
-    ouvir: "https://spotify.com"
+    nome: "Primeiro Álbum",
+    tipo: "album",
+    capa: "album1.jpg",
+    ouvir: "https://youtube.com",
+    musicas: [
+      { nome: "Música 1" },
+      { nome: "Música 2" },
+      { nome: "Música 3" }
+    ]
   },
   {
-    nome: "Música Antiga 1",
-    capa: "capa2.jpg",
-    plays: 900,
-    ouvir: "https://spotify.com"
+    nome: "EP Noturno",
+    tipo: "ep",
+    capa: "ep1.jpg",
+    ouvir: "https://youtube.com",
+    musicas: [
+      { nome: "Música 4" },
+      { nome: "Música 5" }
+    ]
   },
   {
-    nome: "Música Antiga 2",
-    capa: "capa3.jpg",
-    plays: 600,
-    ouvir: "https://spotify.com"
-  },
-  {
-    nome: "Música Antiga 3",
-    capa: "capa4.jpg",
-    plays: 300,
-    ouvir: "https://spotify.com"
+    nome: "Single 1",
+    tipo: "single",
+    capa: "single1.jpg",
+    ouvir: "https://youtube.com",
+    musicas: [
+      { nome: "Single 1" }
+    ]
   }
-];  
+];
