@@ -11,7 +11,7 @@ window.projetos = [
   {
     nome: "Night",
     tipo: "SINGLE",
-    capa: "nigth.jpg",
+    capa: "night.jpg",
     ouvir: "https://youtu.be/q8jZNjrIWlc?si=I0ygzWlGlQl2SFtw",
     musicas: [
       { nome: "Night" }
@@ -24,6 +24,15 @@ window.projetos = [
     ouvir: "https://youtube.com/playlist?list=PL-pksmpo7d-1ZsnTlIp8r6KRZE1Dg8Di3&si=yHtMhkj9RIKzErfl",
     musicas: [
       { nome: "1.7" }
+    ]
+  },
+    {
+    nome: "Flashback",
+    tipo: "SINGLE",
+    capa: "flashback.jpg",
+    ouvir: "https://youtu.be/0lPDIWu2L1k?si=7pB5BiXsBs0x1fcB",
+    musicas: [
+      { nome: "Flashback" }
     ]
   },
   {
