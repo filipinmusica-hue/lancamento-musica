@@ -23,6 +23,9 @@ window.projetos = [
     capa: "1.7.jpg",
     ouvir: "https://youtube.com/playlist?list=PL-pksmpo7d-1ZsnTlIp8r6KRZE1Dg8Di3&si=yHtMhkj9RIKzErfl",
     musicas: [
+      { nome: "Relaxar" }
+      { nome: "Drip" }
+      { nome: "Sentimento" }
       { nome: "1.7" }
     ]
   },
@@ -105,6 +108,9 @@ window.projetos = [
     ouvir: "https://youtube.com/playlist?list=PL-pksmpo7d-0hUtzS4MKSVTq3PrqyTrS8&si=AygqyG0EDD5JbcLc",
     musicas: [
       { nome: "New Wave" }
+      { nome: "Jordan Azul" }
+      { nome: "Game Over" }
+      { nome: "Mar de Ilusão" }
     ]
   },
   {
@@ -122,7 +128,11 @@ window.projetos = [
     capa: "noite escura.jpg",
     ouvir: "https://youtube.com/playlist?list=PL-pksmpo7d-0pQoZ55HPM_Ge4R-TCsfGx&si=pKFlOjypnnkHH3rk",
     musicas: [
-      { nome: "Noite Escura" }
+      { nome: "Atriz de novela" }
+      { nome: "No More" }
+      { nome: "Aquela Noite" }
+      { nome: "Romeu & Julieta" }
+      { nome: "Porto Seguro" }
     ]
   },
   {
@@ -140,6 +150,9 @@ window.projetos = [
     capa: "virada.jpg",
     ouvir: "https://youtube.com/playlist?list=PL-pksmpo7d-0pQoZ55HPM_Ge4R-TCsfGx&si=pKFlOjypnnkHH3rk",
     musicas: [
+      { nome: "Virada.WAV" }
+      { nome: "Virada.WAV" }
+      { nome: "Virada.WAV" }
       { nome: "Virada.WAV" }
     ]
   },
