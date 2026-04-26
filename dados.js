@@ -35,6 +35,24 @@ window.projetos = [
       { nome: "Flashback" }
     ]
   },
+      {
+    nome: "VVS",
+    tipo: "SINGLE",
+    capa: "vss.jpg",
+    ouvir: "https://youtu.be/lSjzSC5Qy3Y?si=v8aOFKag_jMue7Js",
+    musicas: [
+      { nome: "VVS" }
+    ]
+  },
+        {
+    nome: "Number One",
+    tipo: "SINGLE",
+    capa: "number_one.jpg",
+    ouvir: "https://youtu.be/nhISltprs_U?si=Ny6y62iFq5_v8jFl",
+    musicas: [
+      { nome: "Number One" }
+    ]
+  },
   {
     nome: "Novo Lançamento",
     tipo: "SINGLE",
