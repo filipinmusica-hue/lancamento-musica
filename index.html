@@ -51,13 +51,12 @@ const destaques = window.projetos.filter(p =>
 // monta na tela
 destaques.forEach((p) => {
   top.innerHTML += `
-    <div class="card" onclick="window.open('${p.ouvir}', '_blank')">
-      <img src="${p.capa}">
-      <p>${p.tipo}</p>
-      <h3>${p.nome}</h3>
-    </div>
-  `;
-});
+  <a href="${p.ouvir}" target="_blank" class="card">
+    <img src="${p.capa}">
+    <p>${p.tipo}</p>
+    <h3>${p.nome}</h3>
+  </a>
+`;
 </script>
 
 <script>
