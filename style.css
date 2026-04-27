@@ -573,3 +573,28 @@ body {
     border-bottom: none;
   }
 }
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer a:visited {
+  color: white;
+}
+
+footer a:hover {
+  color: #1db954; /* verde estilo Spotify */
+}
+footer a {
+  color: white;
+  text-decoration: none;
+  background: #181818;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+footer a:hover {
+  background: #1db954;
+  transform: scale(1.05);
+}
