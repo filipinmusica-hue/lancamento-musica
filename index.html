@@ -36,23 +36,19 @@
 const top = document.getElementById("top");
 
 // filtra os destaques
-const destaques = window.projetos.filter(p =>
-  p.nome === "Atriz de cinema" ||
-  p.nome === "Noites sem dormir" ||
-  p.nome === "Baby 2" ||
-  p.nome === "Sem medo"
-);
-
-// monta na tela (CORRIGIDO)
+<script src="dados.js"></script>
+<script>
 const top = document.getElementById("top");
 
+// filtra os destaques
 const destaques = window.projetos.filter(p =>
   p.nome === "Atriz de cinema" ||
   p.nome === "Noites sem dormir" ||
   p.nome === "Baby 2" ||
-  p.nome === "Sem medo"
+  p.nome === "Sem Medo"
 );
 
+// monta na tela
 destaques.forEach((p) => {
   top.innerHTML += `
     <div class="card" onclick="window.open('${p.ouvir}', '_blank')">
