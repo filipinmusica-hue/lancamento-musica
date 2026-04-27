@@ -273,3 +273,153 @@ body {
     justify-content: center;
   }
 }
+
+/* seu CSS antigo fica aqui em cima */
+
+
+/* ========================= */
+/* NOVO DESIGN (COLE AQUI) */
+/* ========================= */
+
+/* FUNDO GERAL */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0a0a0a;
+  color: white;
+}
+
+/* MENU */
+.menu {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  background: #000;
+}
+
+.menu a {
+  background: #111;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  background: white;
+  color: black;
+}
+
+/* CONTAINER */
+.container {
+  padding: 20px;
+}
+
+/* GRID (músicas) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+}
+
+/* CARDS */
+.card {
+  background: #111;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  transition: 0.3s;
+}
+
+.card:hover img {
+  filter: brightness(40%);
+}
+
+/* BOTÃO PLAY */
+.card::after {
+  content: "▶";
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.7);
+  background: white;
+  color: black;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.card:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.card p {
+  color: #aaa;
+  margin: 10px;
+}
+
+.card h3 {
+  margin: 0 10px 15px;
+}
+
+/* 🔥 RODAPÉ EM COLUNAS */
+.rodape {
+  margin-top: 80px;
+  background: black;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.rodape-coluna {
+  padding: 30px;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.2);
+}
+
+.rodape-coluna:last-child {
+  border-right: none;
+}
+
+.rodape img {
+  width: 90px;
+}
+
+.rodape a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin: 6px 0;
+}
+
+.rodape a:hover {
+  color: #aaa;
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+  .rodape {
+    grid-template-columns: 1fr;
+  }
+
+  .rodape-coluna {
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+}
