@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <h2>🔥 Destaques</h2>
+  <h2>Destaques</h2>
   <div class="grid" id="top"></div>
 
 </div>
@@ -84,8 +84,8 @@ window.onload = function () {
     const diferenca = data - agora;
 
     if (diferenca <= 0) {
-      contador.innerText = "🎵 Já disponível";
-      botao.innerText = "▶ Ouvir agora";
+      contador.innerText = "Já disponível";
+      botao.innerText = "Ouvir agora";
       botao.href = lancamento.ouvir || "#";
       bg.style.filter = "blur(0px)";
       return;
@@ -95,8 +95,8 @@ window.onload = function () {
     const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
     const minutos = Math.floor((diferenca / (1000 * 60)) % 60);
 
-    contador.innerText = `⏳ ${dias}d ${horas}h ${minutos}m`;
-    botao.innerText = "🔔 Pré-save";
+    contador.innerText = `${dias}d ${horas}h ${minutos}m`;
+    botao.innerText = "Pré-save";
   }
 
   atualizarContador();
