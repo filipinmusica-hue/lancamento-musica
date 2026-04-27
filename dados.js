@@ -177,7 +177,7 @@ window.projetos = [
   {
     nome: "Novo Lançamento",
     tipo: "SINGLE",
-    capa: "capa4.jpg",
+    capa: "so fica aqui.jpg",
     data: "2026-05-10T00:00:00",
     preSave: "LINK_DO_PRESAVE_AQUI",
     ouvir: "LINK_DO_YOUTUBE_AQUI",
