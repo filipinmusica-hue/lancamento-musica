@@ -49,9 +49,9 @@ if (typeof musicas !== "undefined" && Array.isArray(musicas)) {
         const dif = data - agora2;
 
         if (dif <= 0) {
-          contador.innerHTML = "🎵 Já disponível";
+          contador.innerHTML = "Já disponível";
           bg.style.filter = "blur(0)";
-          botao.innerText = "▶ Ouvir agora";
+          botao.innerText = "Ouvir agora";
           botao.href = lancamento.ouvir || "#";
           clearInterval(intervalo);
 
