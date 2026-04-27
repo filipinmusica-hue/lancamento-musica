@@ -47,11 +47,13 @@ destaques.forEach((p) => {
   const indexReal = window.projetos.indexOf(p);
 
   top.innerHTML += `
-    <div class="card" onclick="abrirProjeto(${indexReal})">
-      <img src="${p.capa}">
-      <p>${p.tipo}</p>
-      <h3>${p.nome}</h3>
-    </div>
+  <div class="card" onclick="window.open('${p.ouvir}', '_blank')">
+    <img src="${p.capa}">
+    <p>${p.tipo}</p>
+    <h3>${p.nome}</h3>
+  </div>
+`;
+
   `;
 });
 </script>
