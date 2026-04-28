@@ -17,15 +17,13 @@
 
 <div class="container">
   <h1>Destaques</h1>
-
-  <!-- 🔥 GRID DOS DESTAQUES -->
   <div class="grid" id="destaques"></div>
 </div>
 
-<!-- IMPORTANTE: dados primeiro -->
+<!-- DADOS -->
 <script src="dados.js"></script>
 
-<!-- SCRIPT DOS DESTAQUES -->
+<!-- SCRIPT -->
 <script>
 const container = document.getElementById("destaques");
 
@@ -33,33 +31,69 @@ const destaques = window.projetos
   .filter(p => p.destaque)
   .slice(0, 4);
 
-destaques.forEach(p => {
-  container.innerHTML += `
-    <div class="card" onclick="window.open('${p.ouvir}', '_blank')">
-      <img src="${p.capa}">
-      <p>${p.tipo}</p>
-      <h3>${p.nome}</h3>
-    </div>
-  `;
-});
+function formatarTempo(ms) {
+  const total = Math.floor(ms / 1000);
+  const dias = Math.floor(total / 86400);
+  const horas = Math.floor((total % 86400) / 3600);
+  const min = Math.floor((total % 3600) / 60);
+
+  return `${dias}d ${horas}h ${min}m`;
+}
+
+function render() {
+  container.innerHTML = "";
+
+  destaques.forEach(p => {
+    const agora = new Date();
+    const lancamento = p.data ? new Date(p.data) : null;
+
+    let extra = "";
+    let acao = `window.open('${p.ouvir}', '_blank')`;
+
+    // 🔥 SE AINDA NÃO LANÇOU
+    if (lancamento && agora < lancamento) {
+      const diff = lancamento - agora;
+
+      extra = `
+        <p style="color:#aaa;">⏳ ${formatarTempo(diff)}</p>
+        <button onclick="event.stopPropagation(); window.open('${p.preSave}', '_blank')">
+          Pré-Save
+        </button>
+      `;
+
+      acao = ""; // bloqueia clique
+    }
+
+    container.innerHTML += `
+      <div class="card" onclick="${acao}">
+        <img src="${p.capa}">
+        <p>${p.tipo}</p>
+        <h3>${p.nome}</h3>
+        ${extra}
+      </div>
+    `;
+  });
+}
+
+// atualiza a cada segundo
+setInterval(render, 1000);
+render();
 </script>
 
-<footer style="background:linear-gradient(180deg,#050505,#111); color:#fff; display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid #333; margin-top:80px; box-shadow:0 -10px 30px rgba(0,0,0,.4);">
+<footer style="background:linear-gradient(180deg,#050505,#111); color:#fff; display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid #333; margin-top:80px;">
 
-  <div style="padding:35px; text-align:center;">
-    <img src="logo.png" style="width:110px;">
+  <div style="padding:30px; text-align:center;">
+    <img src="logo.png" style="width:100px;">
   </div>
 
-  <div style="padding:35px; text-align:center;">
+  <div style="padding:30px; text-align:center;">
     <a href="mailto:seuemail@email.com">Suporte</a><br>
     <a href="sobre.html">Sobre</a>
   </div>
 
-  <div style="padding:35px; text-align:center;">
+  <div style="padding:30px; text-align:center;">
     <a href="https://instagram.com" target="_blank">Instagram</a><br>
     <a href="https://youtube.com" target="_blank">YouTube</a>
-    <a href="https://youtube.com" target="_blank">YouTube</a>
-    <a href="https://open.spotify.com/intl-pt/artist/0wgTRO4zWneUTAr9M4gNJS" target="_blank">Spotify</a>
   </div>
 
 </footer>
