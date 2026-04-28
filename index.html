@@ -34,23 +34,20 @@
 
 <script>
 
-// filtra os destaques
-
+  //destaque//
 const top = document.getElementById("top");
 
-// filtra os destaques
 const destaques = window.projetos.filter(p => p.destaque);
 
-// monta na tela
 destaques.forEach((p) => {
   top.innerHTML += `
-  <a href="${p.ouvir}" target="_blank" class="card">
-    <img src="${p.capa}">
-    <p>${p.tipo}</p>
-    <h3>${p.nome}</h3>
-  </a>
-`;})
-</script>
+    <a href="${p.ouvir}" target="_blank" class="card">
+      <img src="${p.capa}">
+      <p>${p.tipo}</p>
+      <h3>${p.nome}</h3>
+    </a>
+  `;
+});
 
 <script>
 window.onload = function () {
