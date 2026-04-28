@@ -24,10 +24,12 @@
 <script>
 const catalogo = document.getElementById("catalogo");
 
-window.projetos.forEach((p, index) => {
-  catalogo.innerHTML += `
-    <div class="card" onclick="abrirProjeto(${index})">
-  window.projetos.forEach((p) => {
+<script src="dados.js"></script>
+
+<script>
+const catalogo = document.getElementById("catalogo");
+
+window.projetos.forEach((p) => {
   catalogo.innerHTML += `
     <div class="card" onclick="window.open('${p.ouvir}', '_blank')">
       <img src="${p.capa}">
@@ -36,11 +38,6 @@ window.projetos.forEach((p, index) => {
     </div>
   `;
 });
-
-function abrirProjeto(index) {
-  localStorage.setItem("projeto", index);
-  window.location.href = "album.html";
-}
 </script>
 
   
