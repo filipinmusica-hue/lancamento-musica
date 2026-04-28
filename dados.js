@@ -110,7 +110,7 @@ window.projetos = [
       { nome: "New Wave" },
       { nome: "Jordan Azul" },
       { nome: "Game Over" },
-      { nome: "Mar de Ilusão" },
+      { nome: "Mar de Ilusão" }
     ]
   },
   {
