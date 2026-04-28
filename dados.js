@@ -2,7 +2,7 @@ window.projetos = [
   {
     nome: "Baby",
     tipo: "SINGLE",
-    capa: "baby.jpg",
+    capa: "./imgs/baby.jpg",
     ouvir: "https://youtu.be/uPATJAckS-Q?si=WuEIUSpVFZS5G92C",
     musicas: [
       { nome: "Baby" }
@@ -11,7 +11,7 @@ window.projetos = [
   {
     nome: "Night",
     tipo: "SINGLE",
-    capa: "night.jpg",
+    capa: "./imgs/night.jpg",
     ouvir: "https://youtu.be/q8jZNjrIWlc?si=I0ygzWlGlQl2SFtw",
     musicas: [
       { nome: "Night" }
@@ -20,7 +20,7 @@ window.projetos = [
   {
     nome: "1.7",
     tipo: "ALBUM",
-    capa: "1.7.jpg",
+    capa: "./imgs/1.7.jpg",
     ouvir: "https://youtube.com/playlist?list=PL-pksmpo7d-1ZsnTlIp8r6KRZE1Dg8Di3&si=yHtMhkj9RIKzErfl",
     musicas: [
       { nome: "Relaxar" },
@@ -32,7 +32,7 @@ window.projetos = [
     {
     nome: "Flashback",
     tipo: "SINGLE",
-    capa: "flashback.jpg",
+    capa: "./imgs/flashback.jpg",
     ouvir: "https://youtu.be/0lPDIWu2L1k?si=7pB5BiXsBs0x1fcB",
     musicas: [
       { nome: "Flashback" }
@@ -41,7 +41,7 @@ window.projetos = [
       {
     nome: "VVS",
     tipo: "SINGLE",
-    capa: "vvs.jpg",
+    capa: "./imgs/vvs.jpg",
     ouvir: "https://youtu.be/lSjzSC5Qy3Y?si=v8aOFKag_jMue7Js",
     musicas: [
       { nome: "VVS" }
@@ -50,7 +50,7 @@ window.projetos = [
         {
     nome: "Number One",
     tipo: "SINGLE",
-    capa: "number_one.jpg",
+    capa: "./imgs/number_one.jpg",
     ouvir: "https://youtu.be/nhISltprs_U?si=Ny6y62iFq5_v8jFl",
     musicas: [
       { nome: "Number One" }
@@ -59,7 +59,7 @@ window.projetos = [
    {
     nome: "Vida de chefe",
     tipo: "SINGLE",
-    capa: "vida_de_chefe.jpg",
+    capa: "./imgs/vida_de_chefe.jpg",
     ouvir: "https://youtu.be/L2FQ_J-ZiMQ?si=3p0725ooeMBdsxoc",
     musicas: [
       { nome: "Vida de chefe" }
@@ -68,7 +68,7 @@ window.projetos = [
      {
     nome: "Minha Fã",
     tipo: "SINGLE",
-    capa: "minha fa.jpg",
+    capa: "./imgs/minha fa.jpg",
     ouvir: "https://youtu.be/cf-ygCH8oxk?si=QlW9QELWT0E6jc82",
     musicas: [
       { nome: "Minha Fã" }
@@ -77,7 +77,7 @@ window.projetos = [
    {
     nome: "048",
     tipo: "SINGLE",
-    capa: "048.jpg",
+    capa: "./imgs/048.jpg",
     ouvir: "https://youtu.be/6KYg-L8BpG0?si=PofUyQ9zRHrENflu",
     musicas: [
       { nome: "048" }
@@ -86,7 +86,7 @@ window.projetos = [
    {
     nome: "Baby 2",
     tipo: "SINGLE",
-    capa: "baby_2.jpg",
+    capa: "./imgs/baby_2.jpg",
     ouvir: "https://youtu.be/tMQXyXUwWYk?si=_zHRyZcpR0rPh71-",
     musicas: [
       { nome: "Baby 2" }
@@ -95,7 +95,7 @@ window.projetos = [
   {
     nome: "Bad Girl",
     tipo: "SINGLE",
-    capa: "bad_girl.jpg",
+    capa: "./imgs/bad_girl.jpg",
     ouvir: "https://youtu.be/y8-x0-R76pw?si=7IMN2Ok4tr8qaGb3",
     musicas: [
       { nome: "Bad Girl" }
@@ -104,7 +104,7 @@ window.projetos = [
    {
     nome: "New Wave",
     tipo: "ALBUM",
-    capa: "new_wave.jpg",
+    capa: "./imgs/new_wave.jpg",
     ouvir: "https://youtube.com/playlist?list=PL-pksmpo7d-0hUtzS4MKSVTq3PrqyTrS8&si=AygqyG0EDD5JbcLc",
     musicas: [
       { nome: "New Wave" },
@@ -116,7 +116,7 @@ window.projetos = [
   {
     nome: "F*ck Lov&",
     tipo: "SINGLE",
-    capa: "fuck love.jpg",
+    capa: "./imgs/fuck love.jpg",
     ouvir: "https://youtu.be/wtjysuEOotE?si=yPdCSmPD62EHp6lW",
     musicas: [
       { nome: "F*ck Lov&" }
@@ -125,7 +125,7 @@ window.projetos = [
   {
     nome: "Noite Escura",
     tipo: "ALBUM",
-    capa: "noite escura.jpg",
+    capa: "./imgs/noite escura.jpg",
     ouvir: "https://youtube.com/playlist?list=PL-pksmpo7d-0pQoZ55HPM_Ge4R-TCsfGx&si=pKFlOjypnnkHH3rk",
     musicas: [
       { nome: "Atriz de novela" },
@@ -138,7 +138,7 @@ window.projetos = [
   {
     nome: "Drugs",
     tipo: "SINGLE",
-    capa: "drogs.jpg",
+    capa: "./imgs/drogs.jpg",
     ouvir: "https://youtu.be/t8_uUHCE56M?si=_C0rKfeB3XrCWJjk",
     musicas: [
       { nome: "Drugs" }
@@ -147,7 +147,7 @@ window.projetos = [
   {
     nome: "Virada.WAV",
     tipo: "ALBUM",
-    capa: "virada.jpg",
+    capa: "./imgs/virada.jpg",
     ouvir: "https://youtube.com/playlist?list=PL-pksmpo7d-0pQoZ55HPM_Ge4R-TCsfGx&si=pKFlOjypnnkHH3rk",
     musicas: [
       { nome: "Virada.WAV" },
@@ -159,7 +159,7 @@ window.projetos = [
   {
     nome: "Sem Medo",
     tipo: "SINGLE",
-    capa: "sem medo.jpg",
+    capa: "./imgs/sem medo.jpg",
     ouvir: "https://youtu.be/PkIV469uN6Y?si=uwVOBNbuI544TFoO",
     musicas: [
       { nome: "Sem Medo" }
@@ -168,7 +168,7 @@ window.projetos = [
    {
     nome: "Brilho No Olhar",
     tipo: "SINGLE",
-    capa: "brilho no olhar.jpg",
+    capa: "./imgs/brilho no olhar.jpg",
     ouvir: "https://youtu.be/6tKZkiIM518?si=1qvrvGSVESHc-u2d",
     musicas: [
       { nome: "Brilho No Olhar" }
@@ -177,7 +177,7 @@ window.projetos = [
   {
     nome: "Novo Lançamento",
     tipo: "SINGLE",
-    capa: "so fica aqui.jpg",
+    capa: "./imgs/so fica aqui.jpg",
     data: "2026-05-08 00:00:00",
     preSave: "LINK_DO_PRESAVE_AQUI",
     ouvir: "LINK_DO_YOUTUBE_AQUI",
