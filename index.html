@@ -39,12 +39,7 @@
 const top = document.getElementById("top");
 
 // filtra os destaques
-const destaques = window.projetos.filter(p =>
-  p.nome === "Atriz de cinema" ||
-  p.nome === "Noites sem dormir" ||
-  p.nome === "Baby 2" ||
-  p.nome === "Sem Medo"
-);
+const destaques = window.projetos.filter(p => p.destaque);
 
 // monta na tela
 destaques.forEach((p) => {
