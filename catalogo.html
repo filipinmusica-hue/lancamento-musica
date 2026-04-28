@@ -27,6 +27,9 @@ const catalogo = document.getElementById("catalogo");
 window.projetos.forEach((p, index) => {
   catalogo.innerHTML += `
     <div class="card" onclick="abrirProjeto(${index})">
+  window.projetos.forEach((p) => {
+  catalogo.innerHTML += `
+    <div class="card" onclick="window.open('${p.ouvir}', '_blank')">
       <img src="${p.capa}">
       <p>${p.tipo}</p>
       <h3>${p.nome}</h3>
