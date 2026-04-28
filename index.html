@@ -41,11 +41,11 @@ const destaques = window.projetos.filter(p => p.destaque);
 
 destaques.forEach((p) => {
   top.innerHTML += `
-    <a href="${p.ouvir}" target="_blank" class="card">
+    <div class="card" onclick="tocar('${p.ouvir}')">
       <img src="${p.capa}">
       <p>${p.tipo}</p>
       <h3>${p.nome}</h3>
-    </a>
+    </div>
   `;
 });
 
