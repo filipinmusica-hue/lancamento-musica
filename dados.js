@@ -13,6 +13,7 @@ window.projetos = [
     tipo: "SINGLE",
     capa: "./imgs/night.jpg",
     ouvir: "https://youtu.be/q8jZNjrIWlc?si=I0ygzWlGlQl2SFtw",
+    destaque: true,
     musicas: [
       { nome: "Night" }
     ]
