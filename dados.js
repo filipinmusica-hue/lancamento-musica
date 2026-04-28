@@ -140,6 +140,7 @@ window.projetos = [
     tipo: "SINGLE",
     capa: "./imgs/drogs.jpg",
     ouvir: "https://youtu.be/t8_uUHCE56M?si=_C0rKfeB3XrCWJjk",
+    destaque: true
     musicas: [
       { nome: "Drugs" }
     ]
@@ -149,6 +150,7 @@ window.projetos = [
     tipo: "ALBUM",
     capa: "./imgs/virada.jpg",
     ouvir: "https://youtube.com/playlist?list=PL-pksmpo7d-0pQoZ55HPM_Ge4R-TCsfGx&si=pKFlOjypnnkHH3rk",
+    destaque: true
     musicas: [
       { nome: "Virada.WAV" },
       { nome: "Virada.WAV" },
@@ -161,6 +163,7 @@ window.projetos = [
     tipo: "SINGLE",
     capa: "./imgs/sem medo.jpg",
     ouvir: "https://youtu.be/PkIV469uN6Y?si=uwVOBNbuI544TFoO",
+    destaque: true
     musicas: [
       { nome: "Sem Medo" }
     ]
@@ -170,6 +173,7 @@ window.projetos = [
     tipo: "SINGLE",
     capa: "./imgs/brilho no olhar.jpg",
     ouvir: "https://youtu.be/6tKZkiIM518?si=1qvrvGSVESHc-u2d",
+    destaque: true 
     musicas: [
       { nome: "Brilho No Olhar" }
     ]
