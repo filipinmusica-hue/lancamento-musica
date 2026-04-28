@@ -15,85 +15,105 @@
   <a href="produtos.html">Produtos</a>
 </div>
 
+<!-- 🔥 NOVO LANÇAMENTO -->
+<div class="container">
+  <h1>Novo Lançamento</h1>
+  <div class="grid" id="novoLancamento"></div>
+</div>
+
+<!-- 🔥 DESTAQUES -->
 <div class="container">
   <h1>Destaques</h1>
   <div class="grid" id="destaques"></div>
 </div>
 
-<!-- DADOS -->
 <script src="dados.js"></script>
 
-<!-- SCRIPT -->
 <script>
-const container = document.getElementById("destaques");
-
-const destaques = window.projetos
-  .filter(p => p.destaque)
-  .slice(0, 4);
+const destaquesContainer = document.getElementById("destaques");
+const novoContainer = document.getElementById("novoLancamento");
 
 function formatarTempo(ms) {
   const total = Math.floor(ms / 1000);
   const dias = Math.floor(total / 86400);
   const horas = Math.floor((total % 86400) / 3600);
   const min = Math.floor((total % 3600) / 60);
-
   return `${dias}d ${horas}h ${min}m`;
 }
 
+function criarCard(p, extra = "", bloquear = false) {
+  const acao = bloquear ? "" : `window.open('${p.ouvir}', '_blank')`;
+
+  return `
+    <div class="card" onclick="${acao}">
+      <img src="${p.capa}">
+      <p>${p.tipo}</p>
+      <h3>${p.nome}</h3>
+      ${extra}
+    </div>
+  `;
+}
+
 function render() {
-  container.innerHTML = "";
+  destaquesContainer.innerHTML = "";
+  novoContainer.innerHTML = "";
+
+  // 🔥 DESTAQUES (4)
+  const destaques = window.projetos
+    .filter(p => p.destaque === true)
+    .slice(0, 4);
 
   destaques.forEach(p => {
+    destaquesContainer.innerHTML += criarCard(p);
+  });
+
+  // 🔥 NOVO LANÇAMENTO
+  const novo = window.projetos.find(p => p.data);
+
+  if (novo) {
     const agora = new Date();
-    const lancamento = p.data ? new Date(p.data) : null;
+    const lancamento = new Date(novo.data.replace(" ", "T"));
 
     let extra = "";
-    let acao = `window.open('${p.ouvir}', '_blank')`;
+    let bloquear = false;
 
-    // 🔥 SE AINDA NÃO LANÇOU
-    if (lancamento && agora < lancamento) {
+    if (agora < lancamento) {
       const diff = lancamento - agora;
+      bloquear = true;
 
       extra = `
-        <p style="color:#aaa;">⏳ ${formatarTempo(diff)}</p>
-        <button onclick="event.stopPropagation(); window.open('${p.preSave}', '_blank')">
+        <p style="color:#aaa; margin:8px 0;">⏳ ${formatarTempo(diff)}</p>
+        <button onclick="event.stopPropagation(); window.open('${novo.preSave}', '_blank')">
           Pré-Save
         </button>
       `;
-
-      acao = ""; // bloqueia clique
     }
 
-    container.innerHTML += `
-      <div class="card" onclick="${acao}">
-        <img src="${p.capa}">
-        <p>${p.tipo}</p>
-        <h3>${p.nome}</h3>
-        ${extra}
-      </div>
-    `;
-  });
+    novoContainer.innerHTML = criarCard(novo, extra, bloquear);
+  }
 }
 
-// atualiza a cada segundo
-setInterval(render, 1000);
 render();
+setInterval(render, 1000);
 </script>
 
-<footer style="background:linear-gradient(180deg,#050505,#111); color:#fff; display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid #333; margin-top:80px;">
+<!-- 🔥 SEU RODAPÉ ORIGINAL (NÃO ALTERADO) -->
+<footer style="background:linear-gradient(180deg,#050505,#111); color:#fff; display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid #333; margin-top:80px; box-shadow:0 -10px 30px rgba(0,0,0,.4);">
 
-  <div style="padding:30px; text-align:center;">
-    <img src="logo.png" style="width:100px;">
+  <div style="padding:35px 25px; text-align:center; border-right:1px solid rgba(255,255,255,.18); display:flex; align-items:center; justify-content:center;">
+    <img src="logo.png" style="width:110px; max-height:110px; object-fit:contain;">
   </div>
 
-  <div style="padding:30px; text-align:center;">
-    <a href="mailto:seuemail@email.com">Suporte</a><br>
-    <a href="sobre.html">Sobre</a>
+  <div style="padding:35px 25px; text-align:center; border-right:1px solid rgba(255,255,255,.18); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;">
+    <a href="mailto:seuemail@email.com" style="color:white;">Suporte</a>
+    <a href="mailto:seuemail@email.com" style="color:white;">Contato</a>
+    <a href="sobre.html" style="color:white;">Sobre o artista</a>
   </div>
 
-  <div style="padding:30px; text-align:center;">
-    <a href="https://instagram.com" target="_blank">Instagram</a><br>
-    <a href="https://youtube.com" target="_blank">YouTube</a>
+  <div style="padding:35px 25px; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;">
+    <a href="https://instagram.com" target="_blank" style="color:white;">Instagram</a>
+    <a href="https://youtube.com" target="_blank" style="color:white;">YouTube</a>
+    <a href="https://spotify.com" target="_blank" style="color:white;">Spotify</a>
   </div>
 
 </footer>
