@@ -730,5 +730,8 @@ footer {
   background: transparent !important;
 }
 body {
-  background: #000;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(80, 90, 160, 0.18), transparent 25%),
+    radial-gradient(circle at 80% 10%, rgba(90, 40, 120, 0.12), transparent 28%),
+    linear-gradient(180deg, #05070f 0%, #020204 100%) !important;
 }
