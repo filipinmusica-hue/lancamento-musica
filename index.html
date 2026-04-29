@@ -122,6 +122,66 @@ setInterval(render, 1000);
   </div>
 
 </footer>
+  
+<script src="dados.js"></script>
 
+<script>
+const novoContainer = document.getElementById("novoLancamento");
+
+function formatarTempo(ms) {
+  const total = Math.floor(ms / 1000);
+  const dias = Math.floor(total / 86400);
+  const horas = Math.floor((total % 86400) / 3600);
+  const min = Math.floor((total % 3600) / 60);
+  return `${dias}d ${horas}h ${min}m`;
+}
+
+function renderNovo() {
+  novoContainer.innerHTML = "";
+
+  const novo = window.projetos.find(p => p.data);
+  if (!novo) return;
+
+  const agora = new Date();
+  const lancamento = new Date(novo.data.replace(" ", "T"));
+
+  let blur = 0;
+  let extra = "";
+  let acao = `window.open('${novo.ouvir}', '_blank')`;
+  let brilho = "";
+
+  if (agora < lancamento) {
+    const totalTempo = lancamento - new Date("2026-04-01");
+    const tempoRestante = lancamento - agora;
+
+    const progresso = 1 - (tempoRestante / totalTempo);
+    blur = Math.max(0, 20 - (progresso * 20));
+
+    extra = `
+      <p>⏳ ${formatarTempo(tempoRestante)}</p>
+      <button onclick="event.stopPropagation(); window.open('${novo.preSave}', '_blank')">
+        Pré-Save
+      </button>
+    `;
+
+    acao = "";
+  } else {
+    brilho = "style='animation:none;'";
+  }
+
+  novoContainer.innerHTML = `
+    <div class="banner" ${brilho} onclick="${acao}">
+      <img src="${novo.capa}" style="filter: blur(${blur}px);">
+      <div class="info">
+        <h2>${novo.nome}</h2>
+        ${extra}
+      </div>
+    </div>
+  `;
+}
+
+renderNovo();
+setInterval(renderNovo, 1000);
+</script>
 </body>
 </html>
