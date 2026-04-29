@@ -692,3 +692,40 @@ body::before {
   from { transform: translateY(0); }
   to { transform: translateY(-50px); }
 }
+html, body {
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(80, 90, 160, 0.18), transparent 25%),
+    radial-gradient(circle at 80% 10%, rgba(90, 40, 120, 0.12), transparent 28%),
+    linear-gradient(180deg, #05070f 0%, #020204 100%) !important;
+}
+
+/* estrelas bem fracas */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.35), transparent),
+    radial-gradient(1px 1px at 25% 70%, rgba(255,255,255,.18), transparent),
+    radial-gradient(1px 1px at 45% 30%, rgba(255,255,255,.25), transparent),
+    radial-gradient(1px 1px at 65% 80%, rgba(255,255,255,.20), transparent),
+    radial-gradient(1px 1px at 85% 40%, rgba(255,255,255,.30), transparent),
+    radial-gradient(1px 1px at 95% 85%, rgba(255,255,255,.18), transparent);
+  background-size: 420px 420px;
+}
+
+/* deixa o conteúdo por cima das estrelas */
+.menu,
+.container,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* tira fundo chapado dos containers, se tiver */
+.container {
+  background: transparent !important;
+}
