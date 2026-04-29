@@ -60,7 +60,7 @@ function render() {
     `;
   });
 
-  // 🔥 NOVO LANÇAMENTO
+  // 🔥 NOVO LANÇAMENTO (RETANGULAR)
   const novo = window.projetos.find(p => p.data);
 
   if (novo) {
@@ -99,22 +99,22 @@ render();
 setInterval(render, 1000);
 </script>
 
-<!-- 🔥 RODAPÉ (seu original) -->
-<footer style="background:linear-gradient(180deg,#050505,#111); color:#fff; display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid #333; margin-top:80px; box-shadow:0 -10px 30px rgba(0,0,0,.4);">
+<!-- 🔥 RODAPÉ -->
+<footer style="background:linear-gradient(180deg,#050505,#111); color:#fff; display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid #333; margin-top:80px;">
 
-  <div style="padding:35px 25px; text-align:center; border-right:1px solid rgba(255,255,255,.18); display:flex; align-items:center; justify-content:center;">
-    <img src="logo.png" style="width:110px;">
+  <div style="padding:30px; text-align:center;">
+    <img src="logo.png" style="width:100px;">
   </div>
 
-  <div style="padding:35px 25px; text-align:center; border-right:1px solid rgba(255,255,255,.18); display:flex; flex-direction:column; gap:14px;">
-    <a href="#">Suporte</a>
-    <a href="#">Contato</a>
+  <div style="padding:30px; text-align:center;">
+    <a href="#">Suporte</a><br>
+    <a href="#">Contato</a><br>
     <a href="#">Sobre o artista</a>
   </div>
 
-  <div style="padding:35px 25px; text-align:center; display:flex; flex-direction:column; gap:14px;">
-    <a href="#">Instagram</a>
-    <a href="#">YouTube</a>
+  <div style="padding:30px; text-align:center;">
+    <a href="#">Instagram</a><br>
+    <a href="#">YouTube</a><br>
     <a href="#">Spotify</a>
   </div>
 
