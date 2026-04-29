@@ -736,36 +736,52 @@ body {
     radial-gradient(circle at 80% 10%, rgba(90, 40, 120, 0.12), transparent 28%),
     linear-gradient(180deg, #05070f 0%, #020204 100%) !important;
 }
-/* 🔥 blur lateral */
+/* ✨ BRILHO (fica por cima) */
+#novoLancamento .banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.25),
+    transparent
+  );
+  transform: skewX(-25deg);
+  animation: brilho 2.5s infinite;
+  z-index: 2;
+}
+
+/* 🌫 BLUR + ESCURECIMENTO LATERAL */
 #novoLancamento .banner::after {
   content: "";
   position: absolute;
   inset: 0;
 
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 
-  /* 🔥 deixa só as laterais com blur */
   mask-image: linear-gradient(
     to right,
     black 0%,
-    black 15%,
-    transparent 35%,
-    transparent 65%,
-    black 85%,
+    black 20%,
+    transparent 40%,
+    transparent 60%,
+    black 80%,
     black 100%
   );
 
-  pointer-events: none;
-}
-#novoLancamento .banner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
   background: linear-gradient(
     to right,
-    rgba(0,0,0,0.6),
+    rgba(0,0,0,0.5),
     transparent 30%,
     transparent 70%,
-    rgba(0,0,0,0.6)
+    rgba(0,0,0,0.5)
   );
+
+  pointer-events: none;
+  z-index: 1;
 }
