@@ -1,74 +1,115 @@
-* {
-  box-sizing: border-box;
-}
-
-html {
-  min-height: 100%;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08) 1px, transparent 2px),
-    radial-gradient(circle at 70% 30%, rgba(255,255,255,0.06) 1px, transparent 2px),
-    radial-gradient(circle at 40% 80%, rgba(255,255,255,0.05) 1px, transparent 2px),
-    linear-gradient(180deg, #080b18 0%, #020204 100%);
-  background-size: 300px 300px, 420px 420px, 520px 520px, 100% 100%;
-}
-
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: transparent;
+  background: #050505;
   color: white;
-  overflow-x: hidden;
 }
 
 /* MENU */
 .menu {
-  padding: 15px;
   display: flex;
   gap: 10px;
-  border-bottom: 1px solid #333;
-  flex-wrap: wrap;
+  padding: 15px;
   background: #000;
+  border-bottom: 1px solid #222;
 }
 
 .menu a {
   background: #111;
   color: white;
   padding: 10px 14px;
-  text-decoration: none;
   border-radius: 10px;
+  text-decoration: none;
   transition: 0.3s;
 }
 
 .menu a:hover {
-  background: white;
-  color: black;
+  background: #222;
 }
 
 /* CONTAINER */
 .container {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: auto;
   padding: 20px;
+}
+
+/* LANÇAMENTO */
+.banner {
+  max-width: 850px;
+  margin: 40px auto;
+  border-radius: 20px;
+  background: #111;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.7);
+  overflow: visible;
+}
+
+.banner img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 20px 20px 0 0;
+  filter: brightness(0.6) blur(10px);
+}
+
+.overlay {
+  padding: 50px 20px;
+  text-align: center;
+  color: white;
+}
+
+.overlay h1 {
+  margin: 10px 0;
+  font-size: clamp(24px, 4vw, 38px);
+}
+
+.overlay p {
+  opacity: 0.8;
+}
+
+#contador {
+  margin: 12px 0;
+  font-size: 18px;
+}
+
+/* BOTÃO PRÉ-SAVE */
+.btn {
+  margin-top: 15px;
+  padding: 12px 20px;
+  background: #1a1a1a;
+  color: white;
+  border-radius: 12px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: #2a2a2a;
+  transform: scale(1.05);
 }
 
 /* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 24px;
+  margin-top: 20px;
 }
 
 /* CARDS */
 .card {
   position: relative;
-  text-align: center;
-  cursor: pointer;
   background: #111;
-  padding: 12px;
   border-radius: 16px;
   overflow: hidden;
+  cursor: pointer;
   transition: 0.35s ease;
   box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  text-align: center;
+  text-decoration: none;
+  color: white;
 }
 
 .card:hover {
@@ -81,7 +122,6 @@ body {
   height: 170px;
   object-fit: cover;
   display: block;
-  border-radius: 10px;
   transition: 0.35s ease;
 }
 
@@ -92,7 +132,7 @@ body {
 .card::after {
   content: "▶";
   position: absolute;
-  top: 42%;
+  top: 38%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.7);
   background: white;
@@ -116,64 +156,16 @@ body {
 .card p {
   color: #aaa;
   font-size: 12px;
-  margin: 12px 0 0;
+  margin: 12px 14px 0;
 }
 
 .card h3 {
   color: white;
   font-size: 17px;
-  margin: 6px 0 4px;
+  margin: 6px 14px 16px;
 }
 
-/* BANNER / NOVO LANÇAMENTO */
-/* NOVO LANÇAMENTO IGUAL CARD, MAS RETANGULAR */
-.banner {
-  position: relative;
-  width: 100%;
-  max-width: 650px;
-  height: 330px;
-  margin: 20px auto 70px;
-  border-radius: 18px;
-  overflow: hidden;
-  background: #111;
-  padding: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-}
-
-.banner img {
-  width: 100%;
-  height: 210px;
-  object-fit: cover;
-  display: block;
-  border-radius: 12px;
-  filter: brightness(55%);
-}
-
-.info {
-  position: static;
-  background: transparent;
-  color: white;
-  text-align: center;
-  padding: 10px 0 0;
-}
-
-.info p {
-  color: #aaa;
-  font-size: 12px;
-  margin: 6px 0 0;
-}
-
-.info h2 {
-  color: white;
-  font-size: 20px;
-  margin: 6px 0;
-}
-
-.info button {
-  margin-top: 8px;
-}
-
-/* ÁLBUM */
+/* PÁGINA DO ÁLBUM */
 .album-header {
   text-align: center;
 }
@@ -181,7 +173,7 @@ body {
 .album-header img {
   width: 220px;
   max-width: 100%;
-  border-radius: 12px;
+  border-radius: 16px;
 }
 
 .lista-musicas {
@@ -192,14 +184,13 @@ body {
 
 .musica-item {
   background: #111;
-  color: white;
   padding: 14px;
   border-radius: 10px;
 }
 
-/* EM BREVE */
+/* PRODUTOS */
 .em-breve {
-  height: 60vh;
+  min-height: 60vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -207,46 +198,15 @@ body {
   text-align: center;
 }
 
-/* RODAPÉ */
-footer {
-  background: linear-gradient(180deg,#050505,#111);
+/* LINKS */
+a {
   color: white;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  border-top: 1px solid #333;
-  margin-top: 80px;
-  box-shadow: 0 -10px 30px rgba(0,0,0,.4);
 }
 
-footer > div {
-  padding: 35px 25px;
-  text-align: center;
-  border-right: 1px solid rgba(255,255,255,.18);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-}
-
-footer > div:last-child {
-  border-right: none;
-}
-
-footer img {
-  width: 110px;
-  max-height: 110px;
-  object-fit: contain;
-}
-
+/* RODAPÉ RESPONSIVO */
 footer a {
   color: white;
   text-decoration: none;
-  background: #181818;
-  padding: 10px 18px;
-  border-radius: 12px;
-  min-width: 170px;
-  transition: 0.3s;
 }
 
 footer a:visited {
@@ -254,105 +214,46 @@ footer a:visited {
 }
 
 footer a:hover {
-  background: #1db954;
-  transform: scale(1.05);
+  color: #aaa;
 }
 
-/* MOBILE */
 @media (max-width: 768px) {
   .container {
     padding: 15px;
   }
 
-  .menu a {
-    font-size: 14px;
+  .banner {
+    margin: 25px auto;
   }
 
-  .banner {
-    height: 220px;
+  .banner img {
+    height: 180px;
+  }
+
+  .overlay {
+    padding: 35px 15px;
   }
 
   .grid {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .card img {
+    height: 150px;
   }
 
   footer {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     text-align: center;
   }
 
   footer > div {
-    border-right: none;
+    border-right: none !important;
     border-bottom: 1px solid rgba(255,255,255,0.2);
   }
 
   footer > div:last-child {
     border-bottom: none;
   }
-}
-/* ===== BOTÃO PRÉ-SAVE (BRANCO BONITO) ===== */
-.btn {
-  margin-top: 15px;
-  padding: 12px 26px;
-  background: white;
-  color: black;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  display: inline-block;
-  transition: all 0.3s ease;
-}
-
-.btn:hover {
-  background: #e5e5e5;
-  transform: scale(1.05);
-}
-
-
-/* ===== CARD DO LANÇAMENTO (MAIS SIMÉTRICO) ===== */
-.banner {
-  max-width: 850px;
-  margin: 40px auto;
-  border-radius: 20px;
-  overflow: hidden;
-  background: #111;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.7);
-}
-
-
-/* ===== IMAGEM DO CARD ===== */
-.banner img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  filter: brightness(0.6);
-}
-
-
-/* ===== TEXTO SOBRE O CARD ===== */
-.overlay {
-  padding: 40px 20px; /* AUMENTA ALTURA */
-  text-align: center;
-  color: white;
-}
-
-
-/* TÍTULO */
-.overlay h1 {
-  margin: 10px 0;
-  font-size: clamp(24px, 4vw, 36px);
-}
-
-
-/* TIPO (SINGLE) */
-.overlay p {
-  opacity: 0.7;
-  font-size: 14px;
-}
-
-
-/* CONTADOR */
-#contador {
-  margin: 12px 0;
-  font-size: 16px;
 }
