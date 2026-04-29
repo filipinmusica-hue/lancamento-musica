@@ -788,3 +788,50 @@ body {
   height: 100%;
   object-fit: cover;
 }
+/* NOVO LANÇAMENTO EM FORMATO RETÂNGULO */
+#novoLancamento {
+  max-width: 720px;
+  margin: 0 auto 40px;
+}
+
+#novoLancamento .banner {
+  width: 100% !important;
+  height: 170px !important;
+  max-width: 720px !important;
+  display: flex !important;
+  align-items: stretch;
+  background: #111;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* imagem retangular à esquerda */
+#novoLancamento .banner img {
+  width: 55% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block;
+}
+
+/* informações à direita */
+#novoLancamento .info {
+  position: static !important;
+  width: 45% !important;
+  height: auto !important;
+  padding: 18px !important;
+  background: #111 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+#novoLancamento .info h2 {
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+#novoLancamento .info p {
+  font-size: 13px;
+  margin: 5px 0;
+}
