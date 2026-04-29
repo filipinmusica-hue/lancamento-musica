@@ -874,3 +874,59 @@ body {
   font-size: 13px;
   color: #aaa;
 }
+/* FORÇAR NOVO LANÇAMENTO RETANGULAR */
+#novoLancamento {
+  max-width: 700px !important;
+  margin: 0 auto 40px !important;
+}
+
+#novoLancamento .lancamento-card {
+  width: 100% !important;
+  height: 170px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  background: #111 !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}
+
+#novoLancamento .lancamento-card img {
+  width: 55% !important;
+  height: 170px !important;
+  object-fit: cover !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+}
+
+#novoLancamento .lancamento-info {
+  width: 45% !important;
+  height: 170px !important;
+  padding: 18px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  color: white !important;
+}
+
+#novoLancamento .lancamento-info h2 {
+  font-size: 20px !important;
+  margin: 6px 0 !important;
+}
+
+#novoLancamento .lancamento-info p {
+  font-size: 13px !important;
+  margin: 4px 0 !important;
+}
+
+#novoLancamento .lancamento-info button {
+  margin-top: 8px !important;
+  padding: 8px 14px !important;
+  border: none !important;
+  border-radius: 8px !important;
+  background: #1db954 !important;
+  color: white !important;
+  cursor: pointer !important;
+}
