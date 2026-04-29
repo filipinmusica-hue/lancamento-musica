@@ -930,3 +930,42 @@ body {
   color: white !important;
   cursor: pointer !important;
 }
+#novoLancamento {
+  max-width: 720px;
+  margin: 0 auto 40px;
+}
+
+.lancamento-card {
+  width: 100%;
+  height: 170px;
+  display: flex;
+  background: #111;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.lancamento-card img {
+  width: 60%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lancamento-info {
+  width: 40%;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+}
+
+.lancamento-info h2 {
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+.lancamento-info p {
+  font-size: 13px;
+  color: #aaa;
+}
