@@ -598,3 +598,65 @@ footer a:hover {
   background: #1db954;
   transform: scale(1.05);
 }
+/* 🔥 BANNER */
+#novoLancamento .banner {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* IMAGEM */
+#novoLancamento img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 1s;
+}
+
+/* ✨ BRILHO PASSANDO */
+#novoLancamento .banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.25),
+    transparent
+  );
+  transform: skewX(-25deg);
+  animation: brilho 2.5s infinite;
+}
+
+@keyframes brilho {
+  0% { left: -100%; }
+  100% { left: 150%; }
+}
+
+/* INFO */
+#novoLancamento .info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.85));
+  color: white;
+}
+
+/* BOTÃO */
+#novoLancamento button {
+  margin-top: 10px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #1db954;
+  color: white;
+  cursor: pointer;
+}
