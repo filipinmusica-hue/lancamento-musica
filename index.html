@@ -117,6 +117,75 @@ setInterval(render, 1000);
   </div>
 
 </footer>
+<script>
+const destaquesContainer = document.getElementById("destaques");
+const novoContainer = document.getElementById("novoLancamento");
 
+function formatarTempo(ms) {
+  const total = Math.floor(ms / 1000);
+  const dias = Math.floor(total / 86400);
+  const horas = Math.floor((total % 86400) / 3600);
+  const min = Math.floor((total % 3600) / 60);
+  return `${dias}d ${horas}h ${min}m`;
+}
+
+function render() {
+  destaquesContainer.innerHTML = "";
+  novoContainer.innerHTML = "";
+
+  // DESTAQUES
+  const destaques = window.projetos
+    .filter(p => p.destaque === true)
+    .slice(0, 4);
+
+  destaques.forEach(p => {
+    destaquesContainer.innerHTML += `
+      <div class="card" onclick="window.open('${p.ouvir}', '_blank')">
+        <img src="${p.capa}">
+        <p>${p.tipo}</p>
+        <h3>${p.nome}</h3>
+      </div>
+    `;
+  });
+
+  // NOVO LANÇAMENTO
+  const novo = window.projetos.find(p => p.data);
+
+  if (novo) {
+    const agora = new Date();
+    const lancamento = new Date(novo.data.replace(" ", "T"));
+
+    let extra = "";
+    let bloquear = false;
+
+    if (agora < lancamento) {
+      const diff = lancamento - agora;
+      bloquear = true;
+
+      extra = `
+        <p>⏳ ${formatarTempo(diff)}</p>
+        <button onclick="event.stopPropagation(); window.open('${novo.preSave}', '_blank')">
+          Pré-Save
+        </button>
+      `;
+    }
+
+    novoContainer.innerHTML = `
+      <div class="banner" onclick="${bloquear ? "" : `window.open('${novo.ouvir}', '_blank')`}">
+        <img src="${novo.capa}">
+        <div class="info">
+          <p>${novo.tipo}</p>
+          <h2>${novo.nome}</h2>
+          ${extra}
+        </div>
+      </div>
+    `;
+  }
+}
+
+// 🔥 AGORA SIM FUNCIONA
+render();
+setInterval(render, 1000);
+</script>
 </body>
 </html>
