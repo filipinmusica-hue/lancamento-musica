@@ -15,15 +15,10 @@
   <a href="produtos.html">Produtos</a>
 </div>
 
-<div class="container">
-  <h1>Novo Lançamento</h1>
-  <div id="novoLancamento"></div>
-</div>
-  
 <!-- 🔥 NOVO LANÇAMENTO -->
 <div class="container">
   <h1>Novo Lançamento</h1>
-  <div class="grid" id="novoLancamento"></div>
+  <div id="novoLancamento"></div>
 </div>
 
 <!-- 🔥 DESTAQUES -->
@@ -46,30 +41,23 @@ function formatarTempo(ms) {
   return `${dias}d ${horas}h ${min}m`;
 }
 
-function criarCard(p, extra = "", bloquear = false) {
-  const acao = bloquear ? "" : `window.open('${p.ouvir}', '_blank')`;
-
-  return `
-    <div class="card" onclick="${acao}">
-      <img src="${p.capa}">
-      <p>${p.tipo}</p>
-      <h3>${p.nome}</h3>
-      ${extra}
-    </div>
-  `;
-}
-
 function render() {
   destaquesContainer.innerHTML = "";
   novoContainer.innerHTML = "";
 
-  // 🔥 DESTAQUES (4)
+  // 🎧 DESTAQUES
   const destaques = window.projetos
     .filter(p => p.destaque === true)
     .slice(0, 4);
 
   destaques.forEach(p => {
-    destaquesContainer.innerHTML += criarCard(p);
+    destaquesContainer.innerHTML += `
+      <div class="card" onclick="window.open('${p.ouvir}', '_blank')">
+        <img src="${p.capa}">
+        <p>${p.tipo}</p>
+        <h3>${p.nome}</h3>
+      </div>
+    `;
   });
 
   // 🔥 NOVO LANÇAMENTO
@@ -87,14 +75,23 @@ function render() {
       bloquear = true;
 
       extra = `
-        <p style="color:#aaa; margin:8px 0;">⏳ ${formatarTempo(diff)}</p>
+        <p>⏳ ${formatarTempo(diff)}</p>
         <button onclick="event.stopPropagation(); window.open('${novo.preSave}', '_blank')">
           Pré-Save
         </button>
       `;
     }
 
-    novoContainer.innerHTML = criarCard(novo, extra, bloquear);
+    novoContainer.innerHTML = `
+      <div class="lancamento-card" onclick="${bloquear ? "" : `window.open('${novo.ouvir}', '_blank')`}">
+        <img src="${novo.capa}">
+        <div class="lancamento-info">
+          <p>${novo.tipo}</p>
+          <h2>${novo.nome}</h2>
+          ${extra}
+        </div>
+      </div>
+    `;
   }
 }
 
@@ -102,86 +99,26 @@ render();
 setInterval(render, 1000);
 </script>
 
-<!-- 🔥 SEU RODAPÉ ORIGINAL (NÃO ALTERADO) -->
+<!-- 🔥 RODAPÉ (seu original) -->
 <footer style="background:linear-gradient(180deg,#050505,#111); color:#fff; display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid #333; margin-top:80px; box-shadow:0 -10px 30px rgba(0,0,0,.4);">
 
   <div style="padding:35px 25px; text-align:center; border-right:1px solid rgba(255,255,255,.18); display:flex; align-items:center; justify-content:center;">
-    <img src="logo.png" style="width:110px; max-height:110px; object-fit:contain;">
+    <img src="logo.png" style="width:110px;">
   </div>
 
-  <div style="padding:35px 25px; text-align:center; border-right:1px solid rgba(255,255,255,.18); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;">
-    <a href="mailto:seuemail@email.com" style="color:white;">Suporte</a>
-    <a href="mailto:seuemail@email.com" style="color:white;">Contato</a>
-    <a href="sobre.html" style="color:white;">Sobre o artista</a>
+  <div style="padding:35px 25px; text-align:center; border-right:1px solid rgba(255,255,255,.18); display:flex; flex-direction:column; gap:14px;">
+    <a href="#">Suporte</a>
+    <a href="#">Contato</a>
+    <a href="#">Sobre o artista</a>
   </div>
 
-  <div style="padding:35px 25px; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;">
-    <a href="https://instagram.com" target="_blank" style="color:white;">Instagram</a>
-    <a href="https://youtube.com" target="_blank" style="color:white;">YouTube</a>
-    <a href="https://spotify.com" target="_blank" style="color:white;">Spotify</a>
+  <div style="padding:35px 25px; text-align:center; display:flex; flex-direction:column; gap:14px;">
+    <a href="#">Instagram</a>
+    <a href="#">YouTube</a>
+    <a href="#">Spotify</a>
   </div>
 
 </footer>
-  
-<script src="dados.js"></script>
 
-<script>
-const novoContainer = document.getElementById("novoLancamento");
-
-function formatarTempo(ms) {
-  const total = Math.floor(ms / 1000);
-  const dias = Math.floor(total / 86400);
-  const horas = Math.floor((total % 86400) / 3600);
-  const min = Math.floor((total % 3600) / 60);
-  return `${dias}d ${horas}h ${min}m`;
-}
-
-function renderNovo() {
-  novoContainer.innerHTML = "";
-
-  const novo = window.projetos.find(p => p.data);
-  if (!novo) return;
-
-  const agora = new Date();
-  const lancamento = new Date(novo.data.replace(" ", "T"));
-
-  let blur = 0;
-  let extra = "";
-  let acao = `window.open('${novo.ouvir}', '_blank')`;
-  let brilho = "";
-
-  if (agora < lancamento) {
-    const totalTempo = lancamento - new Date("2026-04-01");
-    const tempoRestante = lancamento - agora;
-
-    const progresso = 1 - (tempoRestante / totalTempo);
-    blur = Math.max(0, 20 - (progresso * 20));
-
-    extra = `
-      <p>⏳ ${formatarTempo(tempoRestante)}</p>
-      <button onclick="event.stopPropagation(); window.open('${novo.preSave}', '_blank')">
-        Pré-Save
-      </button>
-    `;
-
-    acao = "";
-  } else {
-    brilho = "style='animation:none;'";
-  }
-
-  novoContainer.innerHTML = `
-    <div class="banner" ${brilho} onclick="${acao}">
-      <img src="${novo.capa}" style="filter: blur(${blur}px);">
-      <div class="info">
-        <h2>${novo.nome}</h2>
-        ${extra}
-      </div>
-    </div>
-  `;
-}
-
-renderNovo();
-setInterval(renderNovo, 1000);
-</script>
 </body>
 </html>
