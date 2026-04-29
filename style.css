@@ -729,3 +729,6 @@ footer {
 .container {
   background: transparent !important;
 }
+body {
+  background: #000;
+}
