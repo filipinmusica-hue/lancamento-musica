@@ -83,18 +83,16 @@ function render() {
     }
 
     novoContainer.innerHTML = `
-      <div class="lancamento-card" onclick="${bloquear ? "" : `window.open('${novo.ouvir}', '_blank')`}">
-        <img src="${novo.capa}">
-        <div class="lancamento-info">
-          <p>${novo.tipo}</p>
-          <h2>${novo.nome}</h2>
-          ${extra}
-        </div>
-      </div>
-    `;
-  }
-}
-
+  <div class="banner" onclick="${bloquear ? "" : `window.open('${novo.ouvir}', '_blank')`}">
+    <img src="${novo.capa}">
+    <div class="info">
+      <p>${novo.tipo}</p>
+      <h2>${novo.nome}</h2>
+      ${extra}
+    </div>
+  </div>
+`;
+    
 render();
 setInterval(render, 1000);
 </script>
