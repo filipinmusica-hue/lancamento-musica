@@ -602,7 +602,9 @@ footer a:hover {
 #novoLancamento .banner {
   position: relative;
   width: 100%;
-  height: 220px;
+  max-width: 700px;
+  height: 160px;
+  margin: 20px auto;
   border-radius: 18px;
   overflow: hidden;
   cursor: pointer;
@@ -613,7 +615,6 @@ footer a:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: 1s;
 }
 
 /* ✨ BRILHO PASSANDO */
@@ -734,4 +735,37 @@ body {
     radial-gradient(circle at 20% 20%, rgba(80, 90, 160, 0.18), transparent 25%),
     radial-gradient(circle at 80% 10%, rgba(90, 40, 120, 0.12), transparent 28%),
     linear-gradient(180deg, #05070f 0%, #020204 100%) !important;
+}
+/* 🔥 blur lateral */
+#novoLancamento .banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  backdrop-filter: blur(12px);
+
+  /* 🔥 deixa só as laterais com blur */
+  mask-image: linear-gradient(
+    to right,
+    black 0%,
+    black 15%,
+    transparent 35%,
+    transparent 65%,
+    black 85%,
+    black 100%
+  );
+
+  pointer-events: none;
+}
+#novoLancamento .banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.6),
+    transparent 30%,
+    transparent 70%,
+    rgba(0,0,0,0.6)
+  );
 }
