@@ -183,7 +183,7 @@ window.projetos = [
     tipo: "SINGLE",
     capa: "./imgs/so fica aqui.jpg",
     data: "2026-05-08 00:00:00",
-    preSave: "LINK_DO_PRESAVE_AQUI",
+    preSave: "https://ditto.fm/so-fica-aqui",
     ouvir: "LINK_DO_YOUTUBE_AQUI",
     musicas: [
       { nome: "Novo Lançamento" }
