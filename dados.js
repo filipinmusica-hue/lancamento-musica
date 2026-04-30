@@ -179,14 +179,14 @@ window.projetos = [
     ]
   },
   {
-    nome: "Novo Lançamento",
+    nome: "Só Fica Aqui",
     tipo: "SINGLE",
     capa: "./imgs/so fica aqui.jpg",
     data: "2026-05-08 00:00:00",
     preSave: "https://ditto.fm/so-fica-aqui",
-    ouvir: "LINK_DO_YOUTUBE_AQUI",
+    ouvir: "https://ditto.fm/so-fica-aqui",
     musicas: [
-      { nome: "Novo Lançamento" }
+      { nome: "Só Fica Aqui" }
     ]
   }
 ];
