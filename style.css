@@ -74,19 +74,19 @@ body {
 
 /* BOTÃO PRÉ-SAVE */
 .btn {
-  margin-top: 15px;
-  padding: 12px 20px;
-  background: #1a1a1a;
-  color: white;
-  border-radius: 12px;
+  background: #ffffff;
+  color: #000000;
+  padding: 12px 28px;
+  border-radius: 999px;
   text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  transition: all 0.3s ease;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 8px 25px rgba(255,255,255,0.18);
+  transition: 0.3s ease;
 }
 
 .btn:hover {
-  background: #2a2a2a;
+  background: #eaeaea;
   transform: scale(1.05);
 }
 
@@ -272,23 +272,6 @@ footer a:hover {
   text-align: center;
 }
 
-/* Botão Pré-save estiloso */
-.btn {
-  background: #ffffff;
-  color: #000000;
-  padding: 12px 28px;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: bold;
-  border: none;
-  box-shadow: 0 8px 25px rgba(255,255,255,0.18);
-  transition: 0.3s ease;
-}
-
-.btn:hover {
-  background: #eaeaea;
-  transform: scale(1.05);
-}
 body {
   margin: 0;
   font-family: Arial, sans-serif;
