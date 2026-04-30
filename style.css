@@ -257,3 +257,35 @@ footer a:hover {
     border-bottom: none;
   }
 }
+/* Ajuste do texto do Novo Lançamento */
+.overlay {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay h1,
+.overlay p,
+#contador {
+  text-align: center;
+}
+
+/* Botão Pré-save estiloso */
+.btn {
+  background: #ffffff;
+  color: #000000;
+  padding: 12px 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 8px 25px rgba(255,255,255,0.18);
+  transition: 0.3s ease;
+}
+
+.btn:hover {
+  background: #eaeaea;
+  transform: scale(1.05);
+}
