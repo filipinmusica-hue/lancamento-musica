@@ -15,13 +15,11 @@
   <a href="produtos.html">Produtos</a>
 </div>
 
-<!-- 🔥 NOVO LANÇAMENTO -->
 <div class="container">
   <h1>Novo Lançamento</h1>
   <div id="novoLancamento"></div>
 </div>
 
-<!-- 🔥 DESTAQUES -->
 <div class="container">
   <h1>Destaques</h1>
   <div class="grid" id="destaques"></div>
@@ -45,7 +43,6 @@ function render() {
   destaquesContainer.innerHTML = "";
   novoContainer.innerHTML = "";
 
-  // 🎧 DESTAQUES
   const destaques = window.projetos
     .filter(p => p.destaque === true)
     .slice(0, 4);
@@ -60,7 +57,6 @@ function render() {
     `;
   });
 
-  // 🔥 NOVO LANÇAMENTO (RETANGULAR)
   const novo = window.projetos.find(p => p.data);
 
   if (novo) {
@@ -76,28 +72,35 @@ function render() {
 
       extra = `
         <p>⏳ ${formatarTempo(diff)}</p>
-        <button onclick="event.stopPropagation(); window.open('${novo.preSave}', '_blank')">
+        <a class="menu-btn" onclick="event.stopPropagation(); window.open('${novo.preSave}', '_blank')">
           Pré-Save
-        </button>
+        </a>
+      `;
+    } else {
+      extra = `
+        <a class="menu-btn" onclick="event.stopPropagation(); window.open('${novo.ouvir}', '_blank')">
+          Ouvir agora
+        </a>
       `;
     }
 
     novoContainer.innerHTML = `
-  <div class="banner" onclick="${bloquear ? "" : `window.open('${novo.ouvir}', '_blank')`}">
-    <img src="${novo.capa}">
-    <div class="info">
-      <p>${novo.tipo}</p>
-      <h2>${novo.nome}</h2>
-      ${extra}
-    </div>
-  </div>
-`;
-    
+      <div class="banner" onclick="${bloquear ? "" : `window.open('${novo.ouvir}', '_blank')`}">
+        <img src="${novo.capa}">
+        <div class="info">
+          <p>${novo.tipo}</p>
+          <h2>${novo.nome}</h2>
+          ${extra}
+        </div>
+      </div>
+    `;
+  }
+}
+
 render();
 setInterval(render, 1000);
 </script>
 
-<!-- 🔥 RODAPÉ -->
 <footer style="background:linear-gradient(180deg,#050505,#111); color:#fff; display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid #333; margin-top:80px;">
 
   <div style="padding:30px; text-align:center;">
@@ -117,75 +120,6 @@ setInterval(render, 1000);
   </div>
 
 </footer>
-<script>
-const destaquesContainer = document.getElementById("destaques");
-const novoContainer = document.getElementById("novoLancamento");
 
-function formatarTempo(ms) {
-  const total = Math.floor(ms / 1000);
-  const dias = Math.floor(total / 86400);
-  const horas = Math.floor((total % 86400) / 3600);
-  const min = Math.floor((total % 3600) / 60);
-  return `${dias}d ${horas}h ${min}m`;
-}
-
-function render() {
-  destaquesContainer.innerHTML = "";
-  novoContainer.innerHTML = "";
-
-  // DESTAQUES
-  const destaques = window.projetos
-    .filter(p => p.destaque === true)
-    .slice(0, 4);
-
-  destaques.forEach(p => {
-    destaquesContainer.innerHTML += `
-      <div class="card" onclick="window.open('${p.ouvir}', '_blank')">
-        <img src="${p.capa}">
-        <p>${p.tipo}</p>
-        <h3>${p.nome}</h3>
-      </div>
-    `;
-  });
-
-  // NOVO LANÇAMENTO
-  const novo = window.projetos.find(p => p.data);
-
-  if (novo) {
-    const agora = new Date();
-    const lancamento = new Date(novo.data.replace(" ", "T"));
-
-    let extra = "";
-    let bloquear = false;
-
-    if (agora < lancamento) {
-      const diff = lancamento - agora;
-      bloquear = true;
-
-      extra = `
-        <p>⏳ ${formatarTempo(diff)}</p>
-        <button onclick="event.stopPropagation(); window.open('${novo.preSave}', '_blank')">
-          Pré-Save
-        </button>
-      `;
-    }
-
-    novoContainer.innerHTML = `
-      <div class="banner" onclick="${bloquear ? "" : `window.open('${novo.ouvir}', '_blank')`}">
-        <img src="${novo.capa}">
-        <div class="info">
-          <p>${novo.tipo}</p>
-          <h2>${novo.nome}</h2>
-          ${extra}
-        </div>
-      </div>
-    `;
-  }
-}
-
-// 🔥 AGORA SIM FUNCIONA
-render();
-setInterval(render, 1000);
-</script>
 </body>
 </html>
