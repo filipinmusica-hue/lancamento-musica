@@ -74,8 +74,8 @@ body {
 
 /* BOTÃO PRÉ-SAVE */
 .btn {
-  background: #ffffff;
-  color: #000000;
+  background: #000000;
+  color:#ffffff;
   padding: 12px 28px;
   border-radius: 999px;
   text-decoration: none;
