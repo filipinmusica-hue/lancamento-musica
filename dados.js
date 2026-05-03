@@ -152,10 +152,13 @@ window.projetos = [
     capa: "./imgs/virada.jpg",
     ouvir: "https://youtube.com/playlist?list=PL-pksmpo7d-0pQoZ55HPM_Ge4R-TCsfGx&si=pKFlOjypnnkHH3rk",
     musicas: [
-      { nome: "Virada.WAV" },
-      { nome: "Virada.WAV" },
-      { nome: "Virada.WAV" },
-      { nome: "Virada.WAV" }
+      { nome: "Virada" },
+      { nome: "Infelizmente" },
+      { nome: "Noites Sem Dormir" },
+      { nome: "Rockstar" },
+      { nome: "Luz do luar" },
+      { nome: "Desorientado" },
+      { nome: "Blessed" }
     ]
   },
   {
